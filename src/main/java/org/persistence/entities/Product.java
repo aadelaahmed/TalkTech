@@ -25,9 +25,11 @@ public class Product  implements java.io.Serializable {
      private Integer productId;
      private String name;
      private String description;
+     private String brand;
      private BigDecimal price;
      private Integer quantity;
      private Integer categoryId;
+     private String color;
      private Set<CartItems> cartItems = new HashSet(0);
      private Set<OrderItems> orderItems = new HashSet(0);
 
@@ -43,8 +45,26 @@ public class Product  implements java.io.Serializable {
        this.cartItems = cartItems;
        this.orderItems = orderItems;
     }
-   
-     @Id @GeneratedValue(strategy=IDENTITY)
+    public Product(String name, String description,String brand,String color, BigDecimal price, Integer quantity, Integer categoryId) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.categoryId = categoryId;
+        this.color = color;
+        this.brand = brand;
+    }
+    @Column(name="Color", length=45)
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="ProductID", unique=true, nullable=false)
@@ -81,7 +101,16 @@ public class Product  implements java.io.Serializable {
     public BigDecimal getPrice() {
         return this.price;
     }
-    
+
+    @Column(name="Brand",length=50)
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public void setPrice(BigDecimal price) {
         this.price = price;
     }

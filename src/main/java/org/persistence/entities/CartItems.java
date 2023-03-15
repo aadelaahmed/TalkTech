@@ -21,8 +21,7 @@ import jakarta.persistence.Table;
 )
 public class CartItems implements java.io.Serializable {
 
-
-     private CartitemsId id;
+     private CartItemsId id;
      private Product product;
      private Cart cart;
      private Integer quantity;
@@ -31,12 +30,12 @@ public class CartItems implements java.io.Serializable {
     }
 
 	
-    public CartItems(CartitemsId id, Product product, Cart cart) {
+    public CartItems(CartItemsId id, Product product, Cart cart) {
         this.id = id;
         this.product = product;
         this.cart = cart;
     }
-    public CartItems(CartitemsId id, Product product, Cart cart, Integer quantity) {
+    public CartItems(CartItemsId id, Product product, Cart cart, Integer quantity) {
        this.id = id;
        this.product = product;
        this.cart = cart;
@@ -49,11 +48,11 @@ public class CartItems implements java.io.Serializable {
     @AttributeOverrides( {
         @AttributeOverride(name="cartId", column=@Column(name="CartID", nullable=false) ), 
         @AttributeOverride(name="productId", column=@Column(name="ProductID", nullable=false) ) } )
-    public CartitemsId getId() {
+    public CartItemsId getId() {
         return this.id;
     }
     
-    public void setId(CartitemsId id) {
+    public void setId(CartItemsId id) {
         this.id = id;
     }
 

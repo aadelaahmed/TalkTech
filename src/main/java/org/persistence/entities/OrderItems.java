@@ -23,7 +23,7 @@ import java.math.BigDecimal;
 public class OrderItems implements java.io.Serializable {
 
 
-     private OrderitemsId id;
+     private OrderItemsId id;
      private Product product;
      private Order order;
      private Integer quantity;
@@ -33,12 +33,12 @@ public class OrderItems implements java.io.Serializable {
     }
 
 	
-    public OrderItems(OrderitemsId id, Product product, Order order) {
+    public OrderItems(OrderItemsId id, Product product, Order order) {
         this.id = id;
         this.product = product;
         this.order = order;
     }
-    public OrderItems(OrderitemsId id, Product product, Order order, Integer quantity, BigDecimal price) {
+    public OrderItems(OrderItemsId id, Product product, Order order, Integer quantity, BigDecimal price) {
        this.id = id;
        this.product = product;
        this.order = order;
@@ -52,11 +52,11 @@ public class OrderItems implements java.io.Serializable {
     @AttributeOverrides( {
         @AttributeOverride(name="orderId", column=@Column(name="OrderID", nullable=false) ), 
         @AttributeOverride(name="productId", column=@Column(name="ProductID", nullable=false) ) } )
-    public OrderitemsId getId() {
+    public OrderItemsId getId() {
         return this.id;
     }
     
-    public void setId(OrderitemsId id) {
+    public void setId(OrderItemsId id) {
         this.id = id;
     }
 
