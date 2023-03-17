@@ -17,6 +17,10 @@
         <servlet-name>HomeServlet</servlet-name>
         <servlet-class>org.controller.HomeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignUpServlet</servlet-name>
+        <servlet-class>org.controller.SignUpServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -26,13 +30,25 @@
         <servlet-name>CategoryServlet</servlet-name>
         <servlet-class>org.controller.CategoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignUpValidate</servlet-name>
+        <servlet-class>org.controller.SignUpValidate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
         <url-pattern>/category</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpServlet</servlet-name>
+        <url-pattern>/SignUpServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUpValidate</servlet-name>
+        <url-pattern>/SignUpValidate</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>signin.html</welcome-file>
+        <welcome-file>SignUp.jsp</welcome-file>
       </welcome-file-list>
     
 
