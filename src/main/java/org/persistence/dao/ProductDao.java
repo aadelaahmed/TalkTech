@@ -1,8 +1,15 @@
 package org.persistence.dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import org.persistence.JPAUtil;
 import org.persistence.entities.Product;
+import java.util.*;
+import java.util.List;
 
 public class ProductDao {
     EntityManager entityManager;
@@ -13,5 +20,16 @@ public class ProductDao {
         entityManager.getTransaction().begin();
         entityManager.persist(product);
         entityManager.getTransaction().commit();
+    }
+    public List<Product> getLimitedProducts(int limit){
+        //entityManager.getTransaction().begin();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
+        Root<Product> rootProduct = queryProduct.from(Product.class);
+        queryProduct.select(rootProduct);
+        Query limitQuery = entityManager.createQuery(queryProduct);
+        limitQuery.setMaxResults(limit);
+        List<Product> products = limitQuery.getResultList();
+        return products;
     }
 }

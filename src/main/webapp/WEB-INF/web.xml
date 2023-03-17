@@ -77,7 +77,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>SignUp.jsp</welcome-file>
+        <welcome-file>home</welcome-file>
       </welcome-file-list>
     
 
