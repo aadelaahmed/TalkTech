@@ -66,7 +66,7 @@
                     <div class="full">
                         <div class="center-desk">
                             <div class="logo">
-                                <a href="index.html"><img src="images/logo.png" alt="#"></a>
+                                <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12" style="width: 600px;">
-                <form class="loginForm" action="index.html"  method="GET" style="width: 500px; margin: auto; width: 60%;">
+                <form class="loginForm" action="index.jsp"  method="GET" style="width: 500px; margin: auto; width: 60%;">
                     <div class="row">
 
                         <div class=" col-md-12" >

@@ -16,18 +16,24 @@ public class CategoryDao {
         this.entityManager = JPAUtil.getEntityManager();
     }
 
-    public List<Product> getProductsOnCategory(List<Integer> categoryIds, List<String> brands) {
-        //entityManager.getTransaction().begin();
+    public List<Product> getProductsOnCategory(List<String> categories, List<String> brands) {
+        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
         Root<Product> rootProduct = queryProduct.from(Product.class);
         Predicate brandPredicate = rootProduct.get("brand").in(brands);
-        Predicate categoryPredicate = rootProduct.get("categoryId").in(categoryIds);
+        Predicate categoryPredicate = rootProduct.get("category").in(categories);
         Predicate finalPredicate = criteriaBuilder.and(brandPredicate,categoryPredicate);
         queryProduct.select(rootProduct).where(
             finalPredicate
         );
         List<Product> products = entityManager.createQuery(queryProduct).getResultList();
+        System.out.println("products size in dao ->"+products.size());
+        for (Product product:products ) {
+            System.out.println("product name is in daaaao ->"+product.getName());
+        }
+        entityManager.getTransaction().commit();
+        entityManager.close();
         return products;
     }
 }

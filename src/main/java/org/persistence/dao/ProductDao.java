@@ -17,12 +17,15 @@ public class ProductDao {
         this.entityManager = JPAUtil.getEntityManager();
     }
     public void save(Product product){
+        EntityManager entityManager = JPAUtil.getEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(product);
         entityManager.getTransaction().commit();
+        entityManager.close();
     }
     public List<Product> getLimitedProducts(int limit){
-        //entityManager.getTransaction().begin();
+        EntityManager entityManager = JPAUtil.getEntityManager();
+        entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
         Root<Product> rootProduct = queryProduct.from(Product.class);
@@ -30,6 +33,8 @@ public class ProductDao {
         Query limitQuery = entityManager.createQuery(queryProduct);
         limitQuery.setMaxResults(limit);
         List<Product> products = limitQuery.getResultList();
+        entityManager.getTransaction().commit();
+        entityManager.close();
         return products;
     }
 }

@@ -18,16 +18,11 @@ public class HomeServlet extends HttpServlet {
         HomeService service = new HomeService();
         System.out.println("Hello from home servlet");
         List<Product> products = service.getLimitedProducts(6);
-        List<Product> firstRowProducts = service.getFirstRowProducts(6);
-        List<Product> secondRowProducts = service.getSecondRowProducts();
         /*System.out.println(products);
         for (Product product:products) {
             System.out.println(product.getPrice() + "  "+ product.getName());
         }*/
-        req.setAttribute("firstRowProducts",firstRowProducts);
-        req.setAttribute("secondRowProducts",secondRowProducts);
         req.setAttribute("limitedproducts",products);
-
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(req,resp);
     }

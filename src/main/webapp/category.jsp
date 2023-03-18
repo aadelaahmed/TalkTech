@@ -31,9 +31,12 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
     <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/categorybuttons.css">
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <script src="js/categorybuttons.js"></script>
 </head>
 <!-- body -->
 
@@ -54,7 +57,7 @@
                         <div class="full">
                             <div class="center-desk">
                                 <div class="logo">
-                                    <a href="index.html"><img src="images/logo.png" alt="#"></a>
+                                    <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
                                 </div>
                             </div>
                         </div>
@@ -109,13 +112,22 @@
 
     <!-- brand -->
     <div class="brand">
+        <div id="device-type-filter" class="filter-group container">
+                    <div class=" col-md-12">
+                        <button class="filter-button send" data-filter="mobile phones">Mobile Phones</button>
+                        <button class="filter-button send" data-filter="headphones">Headphones</button>
+                        <button class="filter-button send" data-filter="smart watches">Smart Watches</button>
+                    </div>
+                </div>
+        <div></div>
+        <div></div>
         <div class="container">
-            <div class=" col-md-12">
-                <button class="send">Apple</button>
-                <button class="send">Samsung</button>
-                <button class="send">Oppo</button>
-                <button class="send">Lenovo</button>
-                <button class="send">Sony</button>
+            <div  id="brand-filter" class="filter-group col-md-12">
+                <button class="filter-button send" data-filter="apple">Apple</button>
+                <button class="filter-button send" data-filter="samsung">Samsung</button>
+                <button class="filter-button send" data-filter="realme">Realme</button>
+                <button class="filter-button send" data-filter="oppo">Oppo</button>
+                <button class="filter-button send" data-filter="xiaomi">Xiaomi</button>
             </div>
         </div>
         <div class="brand-bg">

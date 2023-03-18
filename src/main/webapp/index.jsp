@@ -58,7 +58,7 @@
                         <div class="full">
                             <div class="center-desk">
                                 <div class="logo">
-                                    <a href="index.html"><img src="images/logo.png" alt="#"></a>
+                                    <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                             <h1>up to 25% Flat Sale</h1>
                             <p>It is a long established fact that a reader will be distracted by the readable content
                                 <br> of a page when looking at its layout. The point of using Lorem Ipsum is that</p>
-                            <a class="buynow" href="category.html">Buy Now</a>
+                            <a class="buynow" href="category.jsp">Buy Now</a>
                             <ul class="social_icon">
                                 <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
                                 <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -217,7 +217,7 @@
                     </div>
                     </c:forEach>
                     <div class="col-md-12">
-                        <a href = "category.html" class="read-more">See More</a>
+                        <a href = "category.jsp" class="read-more">See More</a>
                     </div>
                     <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
                             <div class="card">

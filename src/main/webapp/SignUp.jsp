@@ -60,7 +60,7 @@
                     else{
                         console.log('Email Is Available');
                         emailValidate.style.color = 'green';
-                        emailValidate.style.fontWeight = 'bold'; 
+                        emailValidate.style.fontWeight = 'bold';
                     }
                     emailValidate.innerHTML = xmlvalue;
                 }
@@ -74,9 +74,9 @@
                     else{
                         console.log('Email Is Available');
                         emailValidate.style.color = 'green';
-                        emailValidate.style.fontWeight = 'bold'; 
+                        emailValidate.style.fontWeight = 'bold';
                     }
-                    
+
                     emailValidate.innerHTML = xmlvalue;
                 }
             };
@@ -110,7 +110,7 @@
                         <div class="full">
                             <div class="center-desk">
                                 <div class="logo">
-                                    <a href="index.html"><img src="images/logo.png" alt="#"></a>
+                                    <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
                                 </div>
                             </div>
                         </div>

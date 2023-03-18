@@ -17,16 +17,16 @@ public class App {
         userService.saveUser(new User("aa@gmail.com"));
         User temp = userService.getUserById(4l);
         System.out.println(temp.getEmail());*/
-        Product product = new Product(
+        /*Product product = new Product(
                 "Amazfit",
                 "Amazfit 2 with Bluetooth feature",
                 "Amazfit",
                 "Black",
                 new BigDecimal(2500),
                 7,
-                3
+                "smart watches"
         );
         ProductService productService = new ProductService();
-        productService.save(product);
+        productService.save(product);*/
     }
 }
