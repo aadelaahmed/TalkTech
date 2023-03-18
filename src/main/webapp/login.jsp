@@ -66,7 +66,7 @@
                     <div class="full">
                         <div class="center-desk">
                             <div class="logo">
-                                <a href="index.html"><img src="images/logo.png" alt="#"></a>
+                                <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                         <div class="limit-box">
                             <nav class="main-menu">
                                 <ul class="menu-area-main">
-                                    <li class="active"> <a href="index.html">Home</a> </li>
+                                    <li class="active"> <a href="index.jsp">Home</a> </li>
                                     <li> <a href="about.html">About</a> </li>
                                     <li><a href="brand.html">Category</a></li>
                                     <li><a href="special.html">Specials</a></li>
@@ -131,7 +131,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12" style="width: 600px;">
-                <form class="loginForm" action="index.html"  method="GET" style="width: 500px; margin: auto; width: 60%;">
+                <form class="loginForm" action="index.jsp"  method="GET" style="width: 500px; margin: auto; width: 60%;">
                     <div class="row">
 
                         <div class=" col-md-12" >
