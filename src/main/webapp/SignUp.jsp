@@ -176,7 +176,8 @@
 
                         <div class="row" style="width: 500px;">
                             <div class=" col-md-12">
-                                <label for="name">Name*:</label>
+                                <label for="name">Name*:</label><label id="namevalidation"
+                                style="color: crimson; font-weight: bold;"></label>
                                 <input class="form-control" type="text" id="name" name="name" required>
                             </div>
 
@@ -191,7 +192,7 @@
                                 <input class="form-control" type="text" id="job" name="job">
                             </div>
                             <div class=" col-md-12" style="width: 200px;">
-                                <label for="email">Email*:</label><label id="emailValidate"></label>
+                                <label for="email">Email*:</label><label id="emailValidate" style="color: crimson; font-weight: bold;"></label>
                                 <input class="form-control" type="text" id="email" name="email" onblur="validateEmail()"
                                     required>
                             </div>

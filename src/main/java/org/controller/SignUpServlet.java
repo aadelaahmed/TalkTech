@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.json.JSONObject;
 import org.persistence.entities.User;
 import org.service.UserService;
 
@@ -18,7 +19,13 @@ public class SignUpServlet extends HttpServlet {
         System.out.println("Inside Do Post Method");
         // Get the JSON data from the request
         String body = new String(request.getInputStream().readAllBytes());
+        // Parse the JSON string into a JSONObject
+        JSONObject jsonObject = new JSONObject(body);
+
+        // Get the email value from the JSONObject
+        String email = jsonObject.getString("email");
         System.out.println("Body->"+body);
+        System.out.println("email from local storage" + email);
 
         // Convert the JSON data to a Map using Gson
         Gson gson = new Gson();

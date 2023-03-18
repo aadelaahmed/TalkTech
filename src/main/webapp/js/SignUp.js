@@ -13,6 +13,15 @@ function SignUp() {
     const form = document.querySelector('#register');
     const formData = new FormData(form);
     console.log(formData);
+    // Get the email value from the formData object
+    const email = formData.get('email');
+    console.log('email from form: '+ email);
+    
+    // Set the email and usertype values to localStorage
+    localStorage.setItem('email', email);
+    localStorage.setItem('usertype', 'Customer');
+    localStorage.setItem('LoggedIn', 'true');
+    
 
     let value = JSON.stringify(Object.fromEntries(formData.entries()));
     console.log(value);
@@ -25,12 +34,12 @@ function SignUp() {
       dataType: 'json',
       success: function (response) {
         console.log('Data sent successfully');
-        window.location.href = 'login.jsp';
+       window.location.href = 'index.jsp';
 
       },
       error: function (xhr, status, error) {
         console.log('Error sending data');
-        window.location.href = 'login.jsp';
+       window.location.href = 'index.jsp';
       }
     });
 
@@ -55,6 +64,7 @@ function validatemail() {
   if (!isValid) {
     console.log("email is not valid");
     document.getElementById("email").value = "";
+    document.getElementById("emailValidate").style.color='red';
     document.getElementById("emailValidate").innerHTML = 'Please Enter A Valid Email.';
     document.getElementById("email").focus();
     return false;
@@ -79,13 +89,22 @@ function validateOthers() {
   const creditLimit = document.getElementById("creditLimit").value;
   const address = document.getElementById("address").value;
   const interests = document.getElementById("interests").value;
+  const name = document.getElementById("name").value;
 
   const jobLabel = document.getElementById("jobvalidation");
   const creditLimitLabel = document.getElementById("creditlimitvalidation");
   const addressLabel = document.getElementById("addressvalidation");
   const interestsLabel = document.getElementById("interestsvalidation");
+  const nameLabel = document.getElementById("namevalidation");
 
   let isValid = true;
+
+  if (!name) {
+    nameLabel.innerHTML = "Name field is required";
+    isValid = false;
+  } else {
+    nameLabel.innerHTML = "";
+  }
 
   if (!job) {
     jobLabel.innerHTML = "Job field is required";
