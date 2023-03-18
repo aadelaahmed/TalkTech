@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.persistence.entities.User;
 import org.service.UserService;
@@ -26,6 +27,10 @@ public class SignUpServlet extends HttpServlet {
         String email = jsonObject.getString("email");
         System.out.println("Body->"+body);
         System.out.println("email from local storage" + email);
+        // create session for user and setting attributes
+        HttpSession session = request.getSession(true);
+        session.setAttribute("email", email);
+        session.setAttribute("LoggedIn", email);
 
         // Convert the JSON data to a Map using Gson
         Gson gson = new Gson();
@@ -36,6 +41,7 @@ public class SignUpServlet extends HttpServlet {
         // Use the data in the Map
         String username = user.getName();
         System.out.println("usernname "+ username+"credit "+user.getCreditLimit());
+
 
     }
 

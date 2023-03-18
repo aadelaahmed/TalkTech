@@ -18,6 +18,7 @@ public class SignUpValidate extends HttpServlet {
         String email = request.getParameter("email");
         System.out.println("email: "+ email);
         UserService userService = new UserService();
+        if(email!=""){
         User user = userService.findByEmail(email);
         if(user!=null) {
             String user_email = user.getEmail();
@@ -28,5 +29,6 @@ public class SignUpValidate extends HttpServlet {
                 out.println("Email Is Available");
             }
         }
+    }
 
 }
