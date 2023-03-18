@@ -34,7 +34,7 @@ public class User  implements java.io.Serializable {
      private BigDecimal creditLimit;
      private String address;
      private String interests;
-     private String userType;
+     private String userType="Customer";
      private Set<Order> orders = new HashSet(0);
 
     public User() {
@@ -48,7 +48,7 @@ public class User  implements java.io.Serializable {
        this.creditLimit = creditLimit;
        this.address = address;
        this.interests = interests;
-       this.userType = userType;
+       this.userType = "Customer";
        this.orders = orders;
     }
     public User(String email){
