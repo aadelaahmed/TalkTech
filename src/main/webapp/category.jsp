@@ -1,3 +1,7 @@
+
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,7 +61,7 @@
                         <div class="full">
                             <div class="center-desk">
                                 <div class="logo">
-                                    <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
+                                    <a href="home"><img src="images/logo.png" alt="#"></a>
                                 </div>
                             </div>
                         </div>
@@ -121,6 +125,7 @@
                 </div>
         <div></div>
         <div></div>
+
         <div class="container">
             <div  id="brand-filter" class="filter-group col-md-12">
                 <button class="filter-button send" data-filter="apple">Apple</button>
@@ -132,8 +137,23 @@
         </div>
         <div class="brand-bg">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                <div id="products-container" class="row">
+                    <!-- <c:forEach var="product" items="${categorized_products}">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                            <div class="card">
+                                <div class="imgBox">
+                                  <img src="images/1.png" alt="mouse corsair" class="mouse">
+                                </div>
+                                <div class="contentBox">
+                                  <h3>${product.name}</h3>
+                                  <h2 class="price">${product.price}.<small>98</small> €</h2>
+                                  <a href="#" class="buy">Buy Now</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </c:forEach> -->
+                    <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
                             <div class="card">
                                 <div class="imgBox">
                                   <img src="images/1.png" alt="mouse corsair" class="mouse">
@@ -146,8 +166,8 @@
                               
                             </div>
                        
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                    </div> -->
+                    <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
                         <div class="card">
 
                             <div class="imgBox">
@@ -221,10 +241,10 @@
                             </div>
                           
                           </div>
-                    </div>
-                    <div class="col-md-12">
+                    </div> -->
+                    <!-- <div class="col-md-12">
                         <a class="read-more">See More</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -253,7 +273,7 @@
                             </ul>
                             <div class="menu-bottom">
                                 <ul class="link">
-                                    <li> <a href="#">Home</a></li>
+                                    <li> <a href="home">Home</a></li>
                                     <li> <a href="#">About</a></li>
                                     
                                     <li> <a href="#">Brand </a></li>

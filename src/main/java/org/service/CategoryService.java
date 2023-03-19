@@ -24,4 +24,7 @@ public class CategoryService {
         }
         return categoryDao.getProductsOnCategory(categories,brands);
     }
+    public List<Product> getAllProducts(){
+        return categoryDao.getAllProducts();
+    }
 }

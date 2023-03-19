@@ -64,7 +64,7 @@
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="menu-area-main">
-                                        <li class="active"> <a href="index.jsp">Home</a> </li>
+                                        <li class="active"> <a href="home">Home</a> </li>
                                         <li> <a href="about.html">About</a> </li>
                                         <li><a href="brand.html">Category</a></li>
                                         <li><a href="special.html">Specials</a></li>
@@ -177,7 +177,7 @@
                             </ul>
                             <div class="menu-bottom">
                                 <ul class="link">
-                                    <li> <a href="#">Home</a></li>
+                                    <li> <a href="home">Home</a></li>
                                     <li> <a href="#">About</a></li>
                                     
                                     <li> <a href="#">Brand </a></li>
