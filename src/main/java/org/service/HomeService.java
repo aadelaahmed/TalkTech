@@ -22,12 +22,6 @@ public class HomeService {
         }*/
         return products;
     }
-    public List<Product> getFirstRowProducts(int limit){
-        products = productDao.getLimitedProducts(limit);
-        return products.subList(1,limitRow);
-    }
-    public List<Product> getSecondRowProducts(){
-        return products.subList(limitRow+1,limitRow+3);
-    }
+
 
 }

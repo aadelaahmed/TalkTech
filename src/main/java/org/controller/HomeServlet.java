@@ -16,7 +16,7 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp);
         HomeService service = new HomeService();
-        System.out.println("Hello from home servlet");
+        System.out.println("Hello from index.jsp servlet");
         List<Product> products = service.getLimitedProducts(6);
         /*System.out.println(products);
         for (Product product:products) {
@@ -31,7 +31,7 @@ public class HomeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doPost(req, resp);
         /*ProductService service = new ProductService();
-        System.out.println("Hello from home servlet");
+        System.out.println("Hello from index.jsp servlet");
         List<Product> products = service.getLimitedProducts(6);
         System.out.println(products);
         for (Product product:products) {
