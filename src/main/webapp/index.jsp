@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>pomato</title>
+    <title>Home</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -64,15 +64,15 @@
                                 <nav class="main-menu">
                                     <ul class="menu-area-main">
                                         <li class="active"> <a href="index.html">Home</a> </li>
-                                        <li> <a href="about.html">About</a> </li>
-                                        <li><a href="category.html">Category</a></li>
-                                        <li><a href="special.html">Specials</a></li>
-                                        <li><a href="contact.html">Contact Us</a></li>
+                                        <li> <a href="about.jsp">About</a> </li>
+                                        <li><a href="category.jsp">Category</a></li>
+                                        <li><a href="special.jsp">Specials</a></li>
+                                        <li><a href="contact.jsp">Contact Us</a></li>
                                         <li>
                                             <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                         </li>
-                                        <li ><a href="cart.html"><img src="images/cart.png" alt="icon" /></a></li>
-                                        <li ><a href="profile.html"><img src="images/profile.png" alt="icon" /></a></li>
+                                        <li ><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a></li>
+                                        <li ><a href="profile.jsp"><img src="images/profile.png" alt="icon" /></a></li>
                                         
                                     </ul>
                                 </nav>

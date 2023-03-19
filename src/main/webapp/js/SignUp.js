@@ -15,13 +15,13 @@ function SignUp() {
     console.log(formData);
     // Get the email value from the formData object
     const email = formData.get('email');
-    console.log('email from form: '+ email);
-    
+    console.log('email from form: ' + email);
+
     // Set the email and usertype values to localStorage
     localStorage.setItem('email', email);
     localStorage.setItem('usertype', 'Customer');
     localStorage.setItem('LoggedIn', 'true');
-    
+
 
     let value = JSON.stringify(Object.fromEntries(formData.entries()));
     console.log(value);
@@ -34,23 +34,18 @@ function SignUp() {
       dataType: 'json',
       success: function (response) {
         console.log('Data sent successfully');
-       window.location.href = 'index.jsp';
+        window.location.href = 'index.jsp';
 
       },
       error: function (xhr, status, error) {
         console.log('Error sending data');
-       window.location.href = 'index.jsp';
+        window.location.href = 'index.jsp';
       }
     });
 
   } else {
     console.log("Email and/or password are not valid.");
   }
-
-
-
-
-
 
 }
 
@@ -64,7 +59,7 @@ function validatemail() {
   if (!isValid) {
     console.log("email is not valid");
     document.getElementById("email").value = "";
-    document.getElementById("emailValidate").style.color='red';
+    document.getElementById("emailValidate").style.color = 'red';
     document.getElementById("emailValidate").innerHTML = 'Please Enter A Valid Email.';
     document.getElementById("email").focus();
     return false;

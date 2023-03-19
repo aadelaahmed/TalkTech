@@ -15,4 +15,5 @@ public class UserService {
     }
 
     public User findByEmail(String email){return userDao.findByEmail(email);}
+    public User updateUser(User user, String email){return userDao.updateUser(user,email);}
 }

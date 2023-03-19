@@ -34,6 +34,14 @@
         <servlet-name>SignUpValidate</servlet-name>
         <servlet-class>org.controller.SignUpValidate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProfileServlet</servlet-name>
+        <servlet-class>org.controller.ProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <servlet-class>org.controller.EditProfileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
         <url-pattern>/category</url-pattern>
@@ -45,6 +53,14 @@
     <servlet-mapping>
         <servlet-name>SignUpValidate</servlet-name>
         <url-pattern>/SignUpValidate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProfileServlet</servlet-name>
+        <url-pattern>/ProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProfileServlet</servlet-name>
+        <url-pattern>/EditProfileServlet</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
