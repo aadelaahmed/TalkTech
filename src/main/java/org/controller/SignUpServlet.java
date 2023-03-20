@@ -30,7 +30,7 @@ public class SignUpServlet extends HttpServlet {
         // create session for user and setting attributes
         HttpSession session = request.getSession(true);
         session.setAttribute("email", email);
-        session.setAttribute("LoggedIn", email);
+        session.setAttribute("LoggedIn", "true");
 
         // Convert the JSON data to a Map using Gson
         Gson gson = new Gson();

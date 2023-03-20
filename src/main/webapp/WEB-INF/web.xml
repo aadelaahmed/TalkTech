@@ -21,6 +21,19 @@
         <servlet-name>SignUpServlet</servlet-name>
         <servlet-class>org.controller.SignUpServlet</servlet-class>
     </servlet>
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>org.controller.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/ProfileServlet</url-pattern>
+        <url-pattern>/EditProfileServlet</url-pattern>
+        <url-pattern>/editprofile.jsp</url-pattern>
+        <url-pattern>/profile.jsp</url-pattern>
+        <!-- Add more URL patterns as needed -->
+    </filter-mapping>
+
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
