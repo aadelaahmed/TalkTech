@@ -120,7 +120,7 @@
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="menu-area-main">
-                                        <li class="active"> <a href="index.html">Home</a> </li>
+                                        <li class="active"> <a href="index.jsp">Home</a> </li>
                                         <li> <a href="about.jsp">About</a> </li>
                                         <li><a href="brand.jsp">Category</a></li>
                                         <li><a href="special.jsp">Specials</a></li>
@@ -130,6 +130,7 @@
                                         </li>
                                         <li><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a></li>
                                         <li><a href="profile.jsp"><img src="images/profile.png" alt="icon" /></a></li>
+                                        <button id="logout" style="background-color: transparent;"><li ><img src="images/logout.png" alt="icon" /></li></button>
                                     </ul>
                                 </nav>
                             </div>

@@ -59,14 +59,15 @@
                         <div class="limit-box">
                            <nav class="main-menu">
                               <ul class="menu-area-main">
-                                 <li class="active"> <a href="index.html">Home</a> </li>
-                                 <li> <a href="about.html">About</a> </li>
-                                 <li><a href="category.html">Category</a></li>
-                                 <li><a href="special.html">Specials</a></li>
-                                 <li><a href="contact.html">Contact Us</a></li>
+                                 <li class="active"> <a href="index.jsp">Home</a> </li>
+                                 <li> <a href="about.jsp">About</a> </li>
+                                 <li><a href="category.jsp">Category</a></li>
+                                 <li><a href="special.jsp">Specials</a></li>
+                                 <li><a href="contact.jsp">Contact Us</a></li>
                                  <li class="last"><a href="#"><img src="images/search_icon.png" alt="icon"/></a></li>
-								 <li ><a href="cart.html"><img src="images/cart.png" alt="icon" /></a></li>
-                                        <li ><a href="profile.html"><img src="images/profile.png" alt="icon" /></a></li>
+								 <li ><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a></li>
+                                        <li ><a href="profile.jsp"><img src="images/profile.png" alt="icon" /></a></li>
+                                        <button id="logout" style="background-color: transparent;"><li ><img src="images/logout.png" alt="icon" /></li></button>
                               </ul>
                            </nav>
                         </div>
