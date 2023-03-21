@@ -1,3 +1,7 @@
+
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>pomato</title>
+    <title>Category</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -30,9 +34,13 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <link rel="stylesheet" href="css/card.css">
+    <link rel="stylesheet" href="css/categorybuttons.css">
+
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <script src="js/categorybuttons.js"></script>
 </head>
 <!-- body -->
 
@@ -53,7 +61,7 @@
                         <div class="full">
                             <div class="center-desk">
                                 <div class="logo">
-                                    <a href="index.html"><img src="images/logo.png" alt="#"></a>
+                                    <a href="home"><img src="images/logo.png" alt="#"></a>
                                 </div>
                             </div>
                         </div>
@@ -63,9 +71,9 @@
                             <div class="limit-box">
                                 <nav class="main-menu">
                                     <ul class="menu-area-main">
-                                        <li class="active"> <a href="index.html">Home</a> </li>
+                                        <li class="active"> <a href="home">Home</a> </li>
                                         <li> <a href="about.html">About</a> </li>
-                                        <li><a href="category.html">Category</a></li>
+                                        <li><a href="category.jsp">Category</a></li>
                                         <li><a href="special.html">Specials</a></li>
                                         <li><a href="contact.html">Contact Us</a></li>
                                         <li class="last">
@@ -107,69 +115,135 @@
 
     <!-- brand -->
     <div class="brand">
+        <div id="device-type-filter" class="filter-group container">
+                    <div class=" col-md-12">
+                        <button class="filter-button send" data-filter="mobile phones">Mobile Phones</button>
+                        <button class="filter-button send" data-filter="headphones">Headphones</button>
+                        <button class="filter-button send" data-filter="smart watches">Smart Watches</button>
+                    </div>
+                </div>
+        <div></div>
+        <div></div>
+       
         <div class="container">
-            <div class=" col-md-12">
-                <button class="send">Apple</button>
-                <button class="send">Samsung</button>
-                <button class="send">Oppo</button>
-                <button class="send">Lenovo</button>
-                <button class="send">Sony</button>
+            <div  id="brand-filter" class="filter-group col-md-12">
+                <button class="filter-button send" data-filter="apple">Apple</button>
+                <button class="filter-button send" data-filter="samsung">Samsung</button>
+                <button class="filter-button send" data-filter="realme">Realme</button>
+                <button class="filter-button send" data-filter="oppo">Oppo</button>
+                <button class="filter-button send" data-filter="xiaomi">Xiaomi</button>
             </div>
         </div>
         <div class="brand-bg">
             <div class="container">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
-                        <div class="brand_box">
-                            <a href="productdetails.html"><img src="images/1.png" alt="img" /></a>
-                            <h3>$<strong class="page_red">100</strong></h3>
-                            <span>Mobile Phone</span>
-                           <a href="#" ><img src="images/addtocart.png"/></a>
+                <div id="products-container" class="row">
+                    <!-- <c:forEach var="product" items="${categorized_products}">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                            <div class="card">
+                                <div class="imgBox">
+                                  <img src="images/1.png" alt="mouse corsair" class="mouse">
+                                </div>
+                                <div class="contentBox">
+                                  <h3>${product.name}</h3>
+                                  <h2 class="price">${product.price}.<small>98</small> €</h2>
+                                  <a href="#" class="buy">Buy Now</a>
+                                </div>
+                            </div>
+                       
                         </div>
+                    </c:forEach> -->
+                    <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                            <div class="card">
+                                <div class="imgBox">
+                                  <img src="images/1.png" alt="mouse corsair" class="mouse">
+                                </div>
+                                <div class="contentBox">
+                                  <h3>Mouse Corsair M65</h3>
+                                  <h2 class="price">61.<small>98</small> €</h2>
+                                  <a href="#" class="buy">Buy Now</a>
+                                </div>
+                              
+                            </div>
+                       
+                    </div> -->
+                    <!-- <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                        <div class="card">
+
+                            <div class="imgBox">
+                              <img src="images/2.png" alt="mouse corsair" class="mouse">
+                            </div>
+                          
+                            <div class="contentBox">
+                              <h3>Mouse Corsair M65</h3>
+                              <h2 class="price">61.<small>98</small> €</h2>
+                              <a href="#" class="buy">Buy Now</a>
+                            </div>
+                          
+                          </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
-                        <div class="brand_box">
-                            <img src="images/2.png" alt="img" />
-                            <h3>$<strong class="page_red">100</strong></h3>
-                            <span>Mobile Phone</span>
-                            <a href="#" ><img src="images/addtocart.png"/></a>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
-                        <div class="brand_box">
-                            <img src="images/3.png" alt="img" />
-                            <h3>$<strong class="page_red">100</strong></h3>
-                            <span>Mobile Phone</span>
-                            <a href="#" ><img src="images/addtocart.png"/></a>
-                        </div>
+                        <div class="card">
+
+                            <div class="imgBox">
+                              <img src="images/3.png" alt="mouse corsair" class="mouse">
+                            </div>
+                          
+                            <div class="contentBox">
+                              <h3>Mouse Corsair M65</h3>
+                              <h2 class="price">61.<small>98</small> €</h2>
+                              <a href="#" class="buy">Buy Now</a>
+                            </div>
+                          
+                          </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                        <div class="brand_box">
-                            <img src="images/4.png" alt="img" />
-                            <h3>$<strong class="page_red">100</strong></h3>
-                            <span>Mobile Phone</span>
-                            <a href="#" ><img src="images/addtocart.png"/></a>
-                        </div>
+                        <div class="card">
+
+                            <div class="imgBox">
+                              <img src="images/4.png" alt="mouse corsair" class="mouse">
+                            </div>
+                          
+                            <div class="contentBox">
+                              <h3>Mouse Corsair M65</h3>
+                              <h2 class="price">61.<small>98</small> €</h2>
+                              <a href="#" class="buy">Buy Now</a>
+                            </div>
+                          
+                          </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mrgn">
-                        <div class="brand_box">
-                            <img src="images/5.png" alt="img" />
-                            <h3>$<strong class="page_red">100</strong></h3>
-                            <span>Mobile Phone</span>
-                            <a href="#" ><img src="images/addtocart.png"/></a>
-                        </div>
+                        <div class="card">
+
+                            <div class="imgBox">
+                              <img src="images/5.png" alt="mouse corsair" class="mouse">
+                            </div>
+                          
+                            <div class="contentBox">
+                              <h3>Mouse Corsair M65</h3>
+                              <h2 class="price">61.<small>98</small> €</h2>
+                              <a href="#" class="buy">Buy Now</a>
+                            </div>
+                          
+                          </div>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mrgn">
-                        <div class="brand_box">
-                            <img src="images/6.png" alt="img" />
-                            <h3>$<strong class="page_red">100</strong></h3>
-                            <span>Mobile Phone</span>
-                            <a href="#" ><img src="images/addtocart.png"/></a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
+                        <div class="card">
+
+                            <div class="imgBox">
+                              <img src="images/6.png" alt="mouse corsair" class="mouse">
+                            </div>
+                          
+                            <div class="contentBox">
+                              <h3>Mouse Corsair M65</h3>
+                              <h2 class="price">61.<small>98</small> €</h2>
+                              <a href="#" class="buy">Buy Now</a>
+                            </div>
+                          
+                          </div>
+                    </div> -->
+                    <!-- <div class="col-md-12">
                         <a class="read-more">See More</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -198,7 +272,7 @@
                             </ul>
                             <div class="menu-bottom">
                                 <ul class="link">
-                                    <li> <a href="#">Home</a></li>
+                                    <li> <a href="home">Home</a></li>
                                     <li> <a href="#">About</a></li>
                                     
                                     <li> <a href="#">Brand </a></li>

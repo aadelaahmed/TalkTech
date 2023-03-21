@@ -28,7 +28,7 @@ public class Product  implements java.io.Serializable {
      private String brand;
      private BigDecimal price;
      private Integer quantity;
-     private Integer categoryId;
+     private String category;
      private String color;
      private Set<CartItems> cartItems = new HashSet(0);
      private Set<OrderItems> orderItems = new HashSet(0);
@@ -36,21 +36,35 @@ public class Product  implements java.io.Serializable {
     public Product() {
     }
 
-    public Product(String name, String description, BigDecimal price, Integer quantity, Integer categoryId, Set<CartItems> cartItems, Set<OrderItems> orderItems) {
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", brand='" + brand + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
+
+    public Product(String name, String description, BigDecimal price, Integer quantity, String category, Set<CartItems> cartItems, Set<OrderItems> orderItems) {
        this.name = name;
        this.description = description;
        this.price = price;
        this.quantity = quantity;
-       this.categoryId = categoryId;
+       this.category = category;
        this.cartItems = cartItems;
        this.orderItems = orderItems;
     }
-    public Product(String name, String description,String brand,String color, BigDecimal price, Integer quantity, Integer categoryId) {
+    public Product(String name, String description,String brand,String color, BigDecimal price, Integer quantity, String category) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
-        this.categoryId = categoryId;
+        this.category = category;
         this.color = color;
         this.brand = brand;
     }
@@ -126,13 +140,13 @@ public class Product  implements java.io.Serializable {
     }
 
     
-    @Column(name="CategoryID")
-    public Integer getCategoryId() {
-        return this.categoryId;
+    @Column(name="Category")
+    public String getCategory() {
+        return this.category;
     }
     
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="product")
