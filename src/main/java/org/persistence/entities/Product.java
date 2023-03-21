@@ -36,6 +36,20 @@ public class Product  implements java.io.Serializable {
     public Product() {
     }
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", brand='" + brand + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", category='" + category + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+    }
+
     public Product(String name, String description, BigDecimal price, Integer quantity, String category, Set<CartItems> cartItems, Set<OrderItems> orderItems) {
        this.name = name;
        this.description = description;

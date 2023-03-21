@@ -13,16 +13,13 @@ import org.persistence.entities.Product;
 import java.util.List;
 
 public class CategoryDao {
-    EntityManager entityManager;
     public CategoryDao(){
-        this.entityManager = JPAUtil.getEntityManager();
     }
 
     public List<Product> getProductsOnCategory(List<String> categories, List<String> brands) {
-        entityManager.getTransaction().begin();
         return Database.doInTransaction(
-                consumer -> {
-                     CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+                paramEntityManager -> {
+                    CriteriaBuilder criteriaBuilder = paramEntityManager.getCriteriaBuilder();
                     CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
                     Root<Product> rootProduct = queryProduct.from(Product.class);
                     Predicate brandPredicate = rootProduct.get("brand").in(brands);
@@ -39,7 +36,7 @@ public class CategoryDao {
                     queryProduct.select(rootProduct).where(
                         finalPredicate
                     );
-                    List<Product> products = entityManager.createQuery(queryProduct).getResultList();
+                    List<Product> products = paramEntityManager.createQuery(queryProduct).getResultList();
                     System.out.println("products size in dao ->"+products.size());
                     for (Product product:products ) {
                         System.out.println("product name is in daaaao ->"+product.getName());
@@ -49,7 +46,8 @@ public class CategoryDao {
                     return products;
                 }
         );
-        /*CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        /*entityManager.getTransaction().begin();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
         Root<Product> rootProduct = queryProduct.from(Product.class);
         Predicate brandPredicate = rootProduct.get("brand").in(brands);
@@ -81,12 +79,12 @@ public class CategoryDao {
     public List<Product> getAllProducts() {
         System.out.println("hello from empty catetgory filter");
         return Database.doInTransaction(
-                consumer -> {
-                    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+                paramEntityManager -> {
+                    CriteriaBuilder criteriaBuilder = paramEntityManager.getCriteriaBuilder();
                     CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
                     Root<Product> rootProduct = queryProduct.from(Product.class);
                     queryProduct.select(rootProduct);
-                    List<Product> products = entityManager.createQuery(queryProduct).getResultList();
+                    List<Product> products = paramEntityManager.createQuery(queryProduct).getResultList();
                     for (Product product:products ) {
                         System.out.println("product name is in daaaao ->"+product.getName());
                         Hibernate.initialize(product.getCartItems());

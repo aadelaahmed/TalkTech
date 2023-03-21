@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
     <link rel="stylesheet" href="css/card.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <script src="js/productitem.js"></script>
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -201,7 +202,7 @@
             <div class="container">
                 <div class="row">
                     <c:forEach var="product" items="${limitedproducts}">
-                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                        <div style="cursor: pointer;" onclick="onProductItemClicked(${product.productId})" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
                             <div class="card">
                                 <div class="imgBox">
                                   <img src="images/1.png" alt="mouse corsair" class="mouse">

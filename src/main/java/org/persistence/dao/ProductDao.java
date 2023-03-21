@@ -6,15 +6,14 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import org.persistence.Database;
 import org.persistence.JPAUtil;
 import org.persistence.entities.Product;
 import java.util.*;
 import java.util.List;
 
 public class ProductDao {
-    EntityManager entityManager;
     public ProductDao(){
-        this.entityManager = JPAUtil.getEntityManager();
     }
     public void save(Product product){
         EntityManager entityManager = JPAUtil.getEntityManager();
@@ -24,7 +23,22 @@ public class ProductDao {
         entityManager.close();
     }
     public List<Product> getLimitedProducts(int limit){
-        EntityManager entityManager = JPAUtil.getEntityManager();
+        return Database.doInTransaction(
+                paramEntityManager ->
+                {
+                    /*EntityManager entityManager = JPAUtil.getEntityManager();
+                    entityManager.getTransaction().begin();*/
+                    CriteriaBuilder criteriaBuilder = paramEntityManager.getCriteriaBuilder();
+                    CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
+                    Root<Product> rootProduct = queryProduct.from(Product.class);
+                    queryProduct.select(rootProduct);
+                    Query limitQuery = paramEntityManager.createQuery(queryProduct);
+                    limitQuery.setMaxResults(limit);
+                    List<Product> products = limitQuery.getResultList();
+                    return products;
+                }
+        );
+        /*EntityManager entityManager = JPAUtil.getEntityManager();
         entityManager.getTransaction().begin();
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
@@ -35,6 +49,24 @@ public class ProductDao {
         List<Product> products = limitQuery.getResultList();
         entityManager.getTransaction().commit();
         entityManager.close();
-        return products;
+        return products;*/
+    }
+
+    public Product getProductById(int id) {
+        return Database.doInTransaction(
+                paramEntityManager ->
+                {
+                    /*EntityManager entityManager = JPAUtil.getEntityManager();
+                    entityManager.getTransaction().begin();*/
+                    CriteriaBuilder criteriaBuilder = paramEntityManager.getCriteriaBuilder();
+                    CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
+                    Root<Product> rootProduct = queryProduct.from(Product.class);
+                    queryProduct.select(rootProduct);
+                    Predicate condition = criteriaBuilder.equal(rootProduct.get("productId"), id);
+                    queryProduct.where(condition);
+                    Product resProduct = paramEntityManager.createQuery(queryProduct).getSingleResult();
+                    return resProduct;
+                }
+        );
     }
 }
