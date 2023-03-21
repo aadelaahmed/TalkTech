@@ -25,7 +25,14 @@
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>org.controller.CartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>CategoryServlet</servlet-name>
         <servlet-class>org.controller.CategoryServlet</servlet-class>
@@ -47,6 +54,14 @@
         <url-pattern>/SignUpValidate</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ProductDetails</servlet-name>
+        <servlet-class>org.controller.ProductDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductDetails</servlet-name>
+        <url-pattern>/productdetails</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>
       </welcome-file-list>

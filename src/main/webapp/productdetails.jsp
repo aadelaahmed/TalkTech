@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +36,10 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <script src="js/productdetails.js"></script>
+      <script>
+        var productJson = ${productJson};
+      </script>
 </head>
 <!-- body -->
 
@@ -114,25 +120,25 @@
                 <div class="photo-main">
                     <img src="images/1.png" alt="green apple slice">
                 </div>
-                <div class="photo-album">
+                <!-- <div class="photo-album">
                     <ul>
                         <li><img src="images/1.png" alt="green apple"></li>
                         <li><img src="images/2.png" alt="half apple"></li>
                         <li><img src="images/3.png" alt="green apple"></li>
                         <li><img src="images/4.png" alt="apple top"></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="product__info">
             <div class="title">
-                <h1>Iphone 13</h1>
-                <span>COD: 45999</span>
+                <h1>${product.name}</h1>
+                <span style="font-weight: bold;font-size: 14px; color: #4c4c4c;">Brand:${product.brand}</span>
             </div>
             <div class="price">
-                $ <span>7.93</span>
+                E£ <span>${product.price}</span>
             </div>
-            <div class="variant">
+           <!-- <div class="variant">
                 <h3>SELECT A COLOR</h3>
                 <ul>
                     <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302064/codepen/delicious-apples/green-apple2.png" alt="green apple"></li>
@@ -140,17 +146,20 @@
                     <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302427/codepen/delicious-apples/orange-apple.png" alt="orange apple"></li>
                     <li><img src="https://res.cloudinary.com/john-mantas/image/upload/v1537302285/codepen/delicious-apples/red-apple.png" alt="red apple"></li>
                 </ul>
-            </div>
-            <div class="description">
-                <h3>Description</h3>
-                <ul>
+            </div> -->
+            <div style=" padding-bottom:20px;" class="description">
+                <h3 style="font-size: 14px; color: #4c4c4c; font-weight: bold;">Description</h3>
+                <p style="color: #4c4c4c">${product.description}</p>
+                <!-- <ul>
                     <li>Apples are nutricious</li>
                     <li>Apples may be good for weight loss</li>
                     <li>Apples may be good for bone health</li>
                     <li>They're linked to a lowest risk of diabetes</li>
-                </ul>
+                </ul> -->
             </div>
-            <button class="buy--btn">ADD TO CART</button>
+            <button id="cartbtn" onclick="onAddToCartClicked()" class="buy--btn">ADD TO CART</button>
+            <label style="color: #4c4c4c; font-weight: bold;" for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" max="${productBean.quantity}" required>
         </div>
     </section>
     <!-- end product -->

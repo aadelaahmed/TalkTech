@@ -10,6 +10,8 @@ https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
             <!-- <property name="jakarta.persistence.schema-generation.database.action" value="create"/> -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.connection.autoReconnect" value="true"/>
+            <property name="hibernate.connection.maxPoolSize" value="20"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/talktech"/>
             <property name="jakarta.persistence.jdbc.user" value="talktech"/>
