@@ -46,7 +46,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                         <a href="adminUsers.html"><i class="fa fa-table fa-3x"></i>View Users</a>
                     </li>
                     <li>
-                        <a href="adminProducts.html"><i class="fa fa-table fa-3x"></i>View Products</a>
+                        <a href="AdminProductsServlet"><i class="fa fa-table fa-3x"></i>View Products</a>
                     </li>
 
 

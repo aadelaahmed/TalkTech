@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -29,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="admin.html">Admin</a>
+                <a class="navbar-brand" href="admin.jsp">Admin</a>
             </div>
             <div style="color: white;
 padding: 15px 50px 5px 50px;
@@ -44,15 +46,15 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                         <img src="assets/img/find_user.png" class="user-image img-responsive" />
                     </li>
                     <li>
-                        <a href="adminUsers.html"><i class="fa fa-table fa-3x"></i>View Users</a>
+                        <a href="adminUsers.jsp"><i class="fa fa-table fa-3x"></i>View Users</a>
                     </li>
                     <li>
-                        <a href="adminProducts.html"><i class="fa fa-table fa-3x"></i>View Products</a>
+                        <a href="adminProducts.jsp"><i class="fa fa-table fa-3x"></i>View Products</a>
                     </li>
 
 
                     <li>
-                        <a href="adminEditProduct.html"><i class="fa fa-edit fa-3x"></i> Edit Product</a>
+                        <a href="adminEditProduct.jsp"><i class="fa fa-edit fa-3x"></i> Edit Product</a>
                     </li>
                 </ul>
 
@@ -90,37 +92,34 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                                                 <th>Description</th>
                                                 <th>Price</th>
                                                 <th>Quantity</th>
-                                                <th>CategoryID</th>
+                                                <th>Color</th>
+                                                <th>Category</th>
+                                                <th>Brand</th>
                                                 <th>Edit</th>
-
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <c:forEach var="product" items="${dataList}">
                                             <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0</td>
-                                                <td>Win 95+</td>
-                                                <td class="center">4</td>
-                                                <td class="center">X</td>
-                                                <td>Trident</td>
+                                                <td>${product.productId}</td>
+                                                <td>${product.name}</td>
+                                                <td>${product.description}</td>
+                                                <td>${product.price}</td>
+                                                <td>${product.quantity}</td>
+                                                <td>${product.color}</td>
+                                                <td>${product.category}</td>
+                                                <td>${product.brand}</td>
                                                 <td><input type="button" id="edit"
-                                                        style="background-color: #d9534f; border: black; color: azure; font-size: medium; "
-                                                        value="Edit"></td>
-
+                                                       style="background-color: #d9534f; border: black; color: azure; font-size: medium; "
+                                                                   value="Edit"></td>
+                                                <td><input type="button" id="delete"
+                                                       style="background-color: #d9534f; border: black; color: azure; font-size: medium; "
+                                                                   value="Delete"></td>
                                             </tr>
-                                            <tr>
-                                                <td>Trident</td>
-                                                <td>Internet Explorer 4.0</td>
-                                                <td>Win 95+</td>
-                                                <td class="center">4</td>
-                                                <td class="center">X</td>
-                                                <td>Trident</td>
-                                                <td><input type="button" id="edit"
-                                                        style="background-color: #d9534f; border: black; color: azure; font-size: medium; "
-                                                        value="Edit"></td>
-
-                                            </tr>
+                                        </c:forEach>
                                         </tbody>
+
                                     </table>
                                 </div>
 

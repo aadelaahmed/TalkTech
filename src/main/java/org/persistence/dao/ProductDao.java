@@ -13,16 +13,18 @@ import java.util.*;
 import java.util.List;
 
 public class ProductDao {
-    public ProductDao(){
+    public ProductDao() {
     }
-    public void save(Product product){
+
+    public void save(Product product) {
         EntityManager entityManager = JPAUtil.getEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(product);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
-    public List<Product> getLimitedProducts(int limit){
+
+    public List<Product> getLimitedProducts(int limit) {
         return Database.doInTransaction(
                 paramEntityManager ->
                 {
@@ -66,6 +68,23 @@ public class ProductDao {
                     queryProduct.where(condition);
                     Product resProduct = paramEntityManager.createQuery(queryProduct).getSingleResult();
                     return resProduct;
+                }
+        );
+    }
+
+    public List<Product> getAllProducts() {
+        return Database.doInTransaction(
+                paramEntityManager ->
+                {
+                    /*EntityManager entityManager = JPAUtil.getEntityManager();
+                    entityManager.getTransaction().begin();*/
+                    CriteriaBuilder criteriaBuilder = paramEntityManager.getCriteriaBuilder();
+                    CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
+                    Root<Product> rootProduct = queryProduct.from(Product.class);
+                    queryProduct.select(rootProduct);
+                    Query query = paramEntityManager.createQuery(queryProduct);
+                    List<Product> products = query.getResultList();
+                    return products;
                 }
         );
     }
