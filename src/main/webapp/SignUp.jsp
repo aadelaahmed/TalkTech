@@ -127,7 +127,6 @@
                                                 <li> <a href="about.jsp">About</a> </li>
                                                 <li><a href="brand.jsp">Category</a></li>
                                                 <li><a href="special.jsp">Specials</a></li>
-                                                <li><a href="contact.jsp">Sign In</a></li>
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                                 </li>

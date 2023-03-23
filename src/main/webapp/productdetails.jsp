@@ -73,10 +73,9 @@
                                         <nav class="main-menu">
                                             <ul class="menu-area-main">
                                                 <li class="active"> <a href="home">Home</a> </li>
-                                                <li> <a href="about.html">About</a> </li>
-                                                <li><a href="brand.html">Category</a></li>
-                                                <li><a href="special.html">Specials</a></li>
-                                                <li><a href="contact.html">Contact Us</a></li>
+                                                <li> <a href="about.jsp">About</a> </li>
+                                                <li><a href="category.html">Category</a></li>
+                                                <li><a href="special.jsp">Specials</a></li>
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                                 </li>

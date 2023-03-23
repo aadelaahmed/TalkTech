@@ -69,7 +69,6 @@
                                     <li> <a href="about.jsp">About</a> </li>
                                     <li><a href="category.jsp">Category</a></li>
                                     <li><a href="special.jsp">Specials</a></li>
-                                    <li><a href="contact.jsp">Contact Us</a></li>
                                     <li class="last"><a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                     </li>
                                     <li><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a></li>
