@@ -92,7 +92,7 @@
         <url-pattern>/productdetails</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>home</welcome-file>
+        <welcome-file>SignUp.jsp</welcome-file>
       </welcome-file-list>
     
 
