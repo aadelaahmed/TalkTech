@@ -1,6 +1,6 @@
 package org.persistence.entities;// default package
-// Generated Mar 14, 2023, 1:07:33 AM by Hibernate Tools 6.1.7.Final
 
+// Generated Mar 14, 2023, 1:07:33 AM by Hibernate Tools 6.1.7.Final
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -50,16 +50,19 @@ public class Product  implements java.io.Serializable {
                 '}';
     }
 
-    public Product(String name, String description, BigDecimal price, Integer quantity, String category, Set<CartItems> cartItems, Set<OrderItems> orderItems) {
-       this.name = name;
-       this.description = description;
-       this.price = price;
-       this.quantity = quantity;
-       this.category = category;
-       this.cartItems = cartItems;
-       this.orderItems = orderItems;
+    public Product(String name, String description, BigDecimal price, Integer quantity, String category,
+            Set<CartItems> cartItems, Set<OrderItems> orderItems) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.category = category;
+        this.cartItems = cartItems;
+        this.orderItems = orderItems;
     }
-    public Product(String name, String description,String brand,String color, BigDecimal price, Integer quantity, String category) {
+
+    public Product(String name, String description, String brand, String color, BigDecimal price, Integer quantity,
+            String category) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -68,7 +71,8 @@ public class Product  implements java.io.Serializable {
         this.color = color;
         this.brand = brand;
     }
-    @Column(name="Color", length=45)
+
+    @Column(name = "Color", length = 45)
 
     public String getColor() {
         return color;
@@ -78,40 +82,37 @@ public class Product  implements java.io.Serializable {
         this.color = color;
     }
 
-    @Id @GeneratedValue(strategy=IDENTITY)
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
 
-    
-    @Column(name="ProductID", unique=true, nullable=false)
+    @Column(name = "ProductID", unique = true, nullable = false)
     public Integer getProductId() {
         return this.productId;
     }
-    
+
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
-    
-    @Column(name="Name", length=50)
+    @Column(name = "Name", length = 50)
     public String getName() {
         return this.name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
 
-    
-    @Column(name="Description", length=100)
+    @Column(name = "Description", length = 100)
     public String getDescription() {
         return this.description;
     }
-    
+
     public void setDescription(String description) {
         this.description = description;
     }
 
-    
-    @Column(name="Price", precision=10, scale=2)
+    @Column(name = "Price", precision = 10, scale = 2)
     public BigDecimal getPrice() {
         return this.price;
     }
@@ -138,47 +139,40 @@ public class Product  implements java.io.Serializable {
         this.price = price;
     }
 
-    
-    @Column(name="Quantity")
+    @Column(name = "Quantity")
     public Integer getQuantity() {
         return this.quantity;
     }
-    
+
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
-    
-    @Column(name="Category")
+    @Column(name = "Category")
     public String getCategory() {
         return this.category;
     }
-    
+
     public void setCategory(String category) {
         this.category = category;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     public Set<CartItems> getCartItems() {
         return this.cartItems;
     }
-    
+
     public void setCartItems(Set<CartItems> cartItems) {
         this.cartItems = cartItems;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="product")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "product")
     public Set<OrderItems> getOrderItems() {
         return this.orderItems;
     }
-    
+
     public void setOrderItems(Set<OrderItems> orderItems) {
         this.orderItems = orderItems;
     }
 
-
-
-
 }
-
-

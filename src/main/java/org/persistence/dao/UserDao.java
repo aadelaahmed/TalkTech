@@ -8,20 +8,19 @@ import org.persistence.entities.User;
 
 public class UserDao {
 
-    public User findById(Long id){
-        User user = JPAUtil.getEntityManager().find(User.class,id);
+    public User findById(Long id) {
+        User user = JPAUtil.getEntityManager().find(User.class, id);
         return user;
     }
 
-    public void save(User user){
+    public void save(User user) {
         EntityManager entityManager = JPAUtil.getEntityManager();
         entityManager.getTransaction().begin();
         try {
             entityManager.persist(user);
             entityManager.getTransaction().commit();
             entityManager.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

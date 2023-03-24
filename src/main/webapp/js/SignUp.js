@@ -34,12 +34,12 @@ function SignUp() {
       dataType: 'json',
       success: function (response) {
         console.log('Data sent successfully');
-        window.location.href = 'index.jsp';
+//        window.location.href = 'index.jsp';
 
       },
       error: function (xhr, status, error) {
         console.log('Error sending data');
-        window.location.href = 'index.jsp';
+//        window.location.href = 'index.jsp';
       }
     });
 

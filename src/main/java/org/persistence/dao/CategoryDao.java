@@ -13,7 +13,7 @@ import org.persistence.entities.Product;
 import java.util.List;
 
 public class CategoryDao {
-    public CategoryDao(){
+    public CategoryDao() {
     }
 
     public List<Product> getProductsOnCategory(List<String> categories, List<String> brands) {
@@ -25,55 +25,58 @@ public class CategoryDao {
                     Predicate brandPredicate = rootProduct.get("brand").in(brands);
                     Predicate categoryPredicate = rootProduct.get("category").in(categories);
                     Predicate finalPredicate = null;
-                    if (brands.size() != 0 && categories.size() !=0)
-                    {
-                         finalPredicate = criteriaBuilder.and(brandPredicate,categoryPredicate);
-                    }else{
-                         finalPredicate = criteriaBuilder.or(brandPredicate,categoryPredicate);
+                    if (brands.size() != 0 && categories.size() != 0) {
+                        finalPredicate = criteriaBuilder.and(brandPredicate, categoryPredicate);
+                    } else {
+                        finalPredicate = criteriaBuilder.or(brandPredicate, categoryPredicate);
                     }
 
-                    //Predicate finalPredicate = criteriaBuilder.or(brandPredicate,categoryPredicate);
+                    // Predicate finalPredicate =
+                    // criteriaBuilder.or(brandPredicate,categoryPredicate);
                     queryProduct.select(rootProduct).where(
-                        finalPredicate
-                    );
+                            finalPredicate);
                     List<Product> products = paramEntityManager.createQuery(queryProduct).getResultList();
-                    System.out.println("products size in dao ->"+products.size());
-                    for (Product product:products ) {
-                        System.out.println("product name is in daaaao ->"+product.getName());
+                    System.out.println("products size in dao ->" + products.size());
+                    for (Product product : products) {
+                        System.out.println("product name is in daaaao ->" + product.getName());
                         Hibernate.initialize(product.getCartItems());
                         Hibernate.initialize(product.getOrderItems());
                     }
                     return products;
-                }
-        );
-        /*entityManager.getTransaction().begin();
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
-        Root<Product> rootProduct = queryProduct.from(Product.class);
-        Predicate brandPredicate = rootProduct.get("brand").in(brands);
-        Predicate categoryPredicate = rootProduct.get("category").in(categories);
-        Predicate finalPredicate = null;
-        if (brands.size() != 0 && categories.size() !=0)
-        {
-             finalPredicate = criteriaBuilder.and(brandPredicate,categoryPredicate);
-        }else{
-             finalPredicate = criteriaBuilder.or(brandPredicate,categoryPredicate);
-        }
-
-        //Predicate finalPredicate = criteriaBuilder.or(brandPredicate,categoryPredicate);
-        queryProduct.select(rootProduct).where(
-            finalPredicate
-        );
-        List<Product> products = entityManager.createQuery(queryProduct).getResultList();
-        System.out.println("products size in dao ->"+products.size());
-        for (Product product:products ) {
-            System.out.println("product name is in daaaao ->"+product.getName());
-            Hibernate.initialize(product.getCartItems());
-            Hibernate.initialize(product.getOrderItems());
-        }
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        return products;*/
+                });
+        /*
+         * entityManager.getTransaction().begin();
+         * CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+         * CriteriaQuery<Product> queryProduct =
+         * criteriaBuilder.createQuery(Product.class);
+         * Root<Product> rootProduct = queryProduct.from(Product.class);
+         * Predicate brandPredicate = rootProduct.get("brand").in(brands);
+         * Predicate categoryPredicate = rootProduct.get("category").in(categories);
+         * Predicate finalPredicate = null;
+         * if (brands.size() != 0 && categories.size() !=0)
+         * {
+         * finalPredicate = criteriaBuilder.and(brandPredicate,categoryPredicate);
+         * }else{
+         * finalPredicate = criteriaBuilder.or(brandPredicate,categoryPredicate);
+         * }
+         * 
+         * //Predicate finalPredicate =
+         * criteriaBuilder.or(brandPredicate,categoryPredicate);
+         * queryProduct.select(rootProduct).where(
+         * finalPredicate
+         * );
+         * List<Product> products =
+         * entityManager.createQuery(queryProduct).getResultList();
+         * System.out.println("products size in dao ->"+products.size());
+         * for (Product product:products ) {
+         * System.out.println("product name is in daaaao ->"+product.getName());
+         * Hibernate.initialize(product.getCartItems());
+         * Hibernate.initialize(product.getOrderItems());
+         * }
+         * entityManager.getTransaction().commit();
+         * entityManager.close();
+         * return products;
+         */
     }
 
     public List<Product> getAllProducts() {
@@ -85,27 +88,30 @@ public class CategoryDao {
                     Root<Product> rootProduct = queryProduct.from(Product.class);
                     queryProduct.select(rootProduct);
                     List<Product> products = paramEntityManager.createQuery(queryProduct).getResultList();
-                    for (Product product:products ) {
-                        System.out.println("product name is in daaaao ->"+product.getName());
+                    for (Product product : products) {
+                        System.out.println("product name is in daaaao ->" + product.getName());
                         Hibernate.initialize(product.getCartItems());
                         Hibernate.initialize(product.getOrderItems());
                     }
                     return products;
-                }
-        );
-       /* entityManager.getTransaction().begin();
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
-        Root<Product> rootProduct = queryProduct.from(Product.class);
-        queryProduct.select(rootProduct);
-        List<Product> products = entityManager.createQuery(queryProduct).getResultList();
-        for (Product product:products ) {
-            System.out.println("product name is in daaaao ->"+product.getName());
-            Hibernate.initialize(product.getCartItems());
-            Hibernate.initialize(product.getOrderItems());
-        }
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        return products;*/
+                });
+        /*
+         * entityManager.getTransaction().begin();
+         * CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+         * CriteriaQuery<Product> queryProduct =
+         * criteriaBuilder.createQuery(Product.class);
+         * Root<Product> rootProduct = queryProduct.from(Product.class);
+         * queryProduct.select(rootProduct);
+         * List<Product> products =
+         * entityManager.createQuery(queryProduct).getResultList();
+         * for (Product product:products ) {
+         * System.out.println("product name is in daaaao ->"+product.getName());
+         * Hibernate.initialize(product.getCartItems());
+         * Hibernate.initialize(product.getOrderItems());
+         * }
+         * entityManager.getTransaction().commit();
+         * entityManager.close();
+         * return products;
+         */
     }
 }

@@ -41,6 +41,7 @@ public class SignUpServlet extends HttpServlet {
         // Use the data in the Map
         String username = user.getName();
         System.out.println("usernname "+ username+"credit "+user.getCreditLimit());
+        request.getRequestDispatcher("index.jsp").forward(request,resp);
 
 
     }
