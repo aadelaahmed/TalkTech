@@ -6,7 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.beans.ProductBean;
+import org.dto.ProductDto;
 import org.persistence.entities.Product;
 import org.service.ProductService;
 import org.util.Constants;
@@ -21,7 +21,7 @@ public class ProductDetailsServlet extends HttpServlet {
         Integer productId = Integer.valueOf(req.getParameter("productid"));
         System.out.println("product id ->"+productId);
         Product product = new ProductService().getProductById(productId);
-        ProductBean productBean = new ProductBean(
+        ProductDto productDto = new ProductDto(
                 product.getProductId(),
                 product.getName(),
                 product.getDescription(),
@@ -33,8 +33,8 @@ public class ProductDetailsServlet extends HttpServlet {
         );
         System.out.println("product -> "+product.toString());
         Gson gson = new Gson();
-        String productJson = gson.toJson(productBean);
-        req.setAttribute(Constants.PRODUCT_ATTRIBUTE,productBean);
+        String productJson = gson.toJson(productDto);
+        req.setAttribute(Constants.PRODUCT_ATTRIBUTE, productDto);
         req.setAttribute(Constants.PRODUCT_ATTRIBUTE_JSON,productJson);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("productdetails.jsp");
         requestDispatcher.forward(req,resp);

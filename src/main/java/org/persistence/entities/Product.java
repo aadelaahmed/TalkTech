@@ -32,7 +32,7 @@ public class Product  implements java.io.Serializable {
      private String color;
      private Set<CartItems> cartItems = new HashSet(0);
      private Set<OrderItems> orderItems = new HashSet(0);
-
+     private String imageUrl;
     public Product() {
     }
 
@@ -114,6 +114,15 @@ public class Product  implements java.io.Serializable {
     @Column(name="Price", precision=10, scale=2)
     public BigDecimal getPrice() {
         return this.price;
+    }
+
+    @Column(name = "ImageUrl",length = 100)
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Column(name="Brand",length=50)

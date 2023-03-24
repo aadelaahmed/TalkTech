@@ -1,8 +1,8 @@
-package org.beans;
+package org.dto;
 
 import java.math.BigDecimal;
 
-public class ProductBean {
+public class ProductDto {
     private Integer productId;
     private String name;
     private String description;
@@ -11,11 +11,11 @@ public class ProductBean {
     private Integer quantity;
     private String category;
     private String color;
-    public ProductBean (){
+    public ProductDto(){
 
     }
 
-    public ProductBean(Integer productId, String name, String description, String brand, BigDecimal price, Integer quantity, String category, String color) {
+    public ProductDto(Integer productId, String name, String description, String brand, BigDecimal price, Integer quantity, String category, String color) {
         this.productId = productId;
         this.name = name;
         this.description = description;
