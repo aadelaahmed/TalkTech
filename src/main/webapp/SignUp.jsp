@@ -49,6 +49,8 @@
                     document.getElementById("login_form").style.display = "none";
                 }
                 function validateEmail() {
+                    const isEmailValid = validatemail();
+                    if (isEmailValid){
                     console.log('inside validateEmail');
                     var req = new XMLHttpRequest();
                     var emailValidate = document.getElementById("emailValidate");
@@ -90,6 +92,7 @@
                     req.open("post", url, true);
                     req.setRequestHeader("content-type", "application/x-www-form-urlencoded");
                     req.send("email=" + emailValue);
+                    }
                 }
             </script>
 

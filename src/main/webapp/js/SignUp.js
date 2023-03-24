@@ -34,12 +34,12 @@ function SignUp() {
       dataType: 'json',
       success: function (response) {
         console.log('Data sent successfully');
-//        window.location.href = 'index.jsp';
+        window.location.href = 'home';
 
       },
       error: function (xhr, status, error) {
         console.log('Error sending data');
-//        window.location.href = 'index.jsp';
+        window.location.href = 'home';
       }
     });
 
@@ -61,7 +61,6 @@ function validatemail() {
     document.getElementById("email").value = "";
     document.getElementById("emailValidate").style.color = 'red';
     document.getElementById("emailValidate").innerHTML = 'Please Enter A Valid Email.';
-    document.getElementById("email").focus();
     return false;
   }
   return true;
