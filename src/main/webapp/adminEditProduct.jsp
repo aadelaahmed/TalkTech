@@ -104,11 +104,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                                     <div class="col-md-6">
                                         <form role="form" id="editForm" name="editForm">
                                             <div class="form-group">
-                                                <img src="assets/img/find_user.png">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Change Pic</label>
-                                                <input type="file" />
+                                                <img style="width: 280px; height: 350px;" src="${param.imageUrl}">
                                             </div>
                                             <div class="form-group">
                                                 <label>ID</label>

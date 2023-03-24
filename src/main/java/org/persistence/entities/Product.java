@@ -72,6 +72,17 @@ public class Product  implements java.io.Serializable {
         this.brand = brand;
     }
 
+    public Product(String name, String description, String brand, BigDecimal price, Integer quantity, String category, String color, String imageUrl) {
+        this.name = name;
+        this.description = description;
+        this.brand = brand;
+        this.price = price;
+        this.quantity = quantity;
+        this.category = category;
+        this.color = color;
+        this.imageUrl = imageUrl;
+    }
+
     @Column(name = "Color", length = 45)
 
     public String getColor() {

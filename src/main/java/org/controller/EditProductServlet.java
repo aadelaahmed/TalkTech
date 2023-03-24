@@ -37,6 +37,6 @@ public class EditProductServlet extends HttpServlet {
         // Use the data in the Map
         String name = product.getName();
         System.out.println("Name:"+ name+" Color:"+product.getColor());
-        request.getRequestDispatcher("adminProducts.jsp").forward(request,response);
+        response.sendRedirect("AdminProductsServlet");
     }
 }

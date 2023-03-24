@@ -13,30 +13,6 @@
     <link href="assets/css/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <script>
-        function AddProduct() {
-            const form = document.querySelector('#addForm');
-
-
-
-            const formData = new FormData(form);
-            const json = JSON.stringify(Object.fromEntries(formData.entries()));
-            console.log(json);
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'AddProductServlet');
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.send(json);
-
-            xhr.onload = () => {
-                if (xhr.status === 200) {
-                    console.log(xhr.statusText)
-                    window.location.href = 'AdminProductsServlet';
-                } else {
-                    console.error(xhr.statusText);
-                }
-            };
-        }
-    </script>
 </head>
 
 <body>
@@ -101,13 +77,13 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <form role="form" id="addForm" name="addForm">
+                                        <form role="form" id="addForm" name="addForm" method="post" action="AddProductServlet" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <img src="assets/img/find_user.png">
                                             </div>
                                             <div class="form-group">
                                                 <label>Change Pic</label>
-                                                <input type="file" />
+                                                <input type="file" name="file"/>
                                             </div>
 
                                             <div class="form-group">
@@ -149,9 +125,9 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                                                 <input type="text" class="form-control" id="productColor" name="color">
                                             </div>
 
-                                            <button type="button" id="submit" name="submit " class="btn btn-default"
+                                            <button type="submit" id="submit" name="submit " class="btn btn-default"
                                                 style="background-color: #f00; color: white;"
-                                                onclick="AddProduct()">Save Changes</button>
+                                                >Save Changes</button>
                                             <a href="AdminProductsServlet"><button type="button"
                                                     class="btn btn-primary">Back To Products</button></a>
 

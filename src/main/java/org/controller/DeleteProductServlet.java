@@ -16,7 +16,7 @@ public class DeleteProductServlet extends HttpServlet {
         System.out.println("productId= " + id);
         ProductService productService = new ProductService();
         productService.deleteProductById(id);
-        req.getRequestDispatcher("AdminProductsServlet").forward(req, resp);
+        resp.sendRedirect("AdminProductsServlet");
 
     }
 }

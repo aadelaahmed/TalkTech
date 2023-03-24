@@ -97,6 +97,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
+                                                        <th>Image</th>
                                                         <th>Name</th>
                                                         <th>Description</th>
                                                         <th>Price</th>
@@ -112,6 +113,8 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                                                     <c:forEach var="product" items="${dataList}">
                                                         <tr>
                                                             <td>${product.productId}</td>
+                                                            <td><img style="width: 60px; height: 80px;"
+                                                                    src="${product.imageUrl}" /></td>
                                                             <td>${product.name}</td>
                                                             <td>${product.description}</td>
                                                             <td>${product.price}</td>
@@ -120,7 +123,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                                                             <td>${product.category}</td>
                                                             <td>${product.brand}</td>
                                                             <td><a
-                                                                    href="adminEditProduct.jsp?productId=${product.productId}&name=${product.name}&description=${product.description}&price=${product.price}&quantity=${product.quantity}&color=${product.color}&category=${product.category}&brand=${product.brand}"><input
+                                                                    href="adminEditProduct.jsp?imageUrl=${product.imageUrl}&productId=${product.productId}&name=${product.name}&description=${product.description}&price=${product.price}&quantity=${product.quantity}&color=${product.color}&category=${product.category}&brand=${product.brand}"><input
                                                                         type="button" id="edit"
                                                                         style="background-color: #d9534f; border: black; color: azure; font-size: medium; "
                                                                         value="Edit"></a></td>
