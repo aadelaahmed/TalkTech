@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Product</title>
+    <title>Add Product</title>
     <!-- BOOTSTRAP STYLES-->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <!-- FONTAWESOME STYLES-->
@@ -14,8 +14,8 @@
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <script>
-        function EditProduct() {
-            const form = document.querySelector('#editForm');
+        function AddProduct() {
+            const form = document.querySelector('#addForm');
 
 
 
@@ -23,7 +23,7 @@
             const json = JSON.stringify(Object.fromEntries(formData.entries()));
             console.log(json);
             const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'EditProductServlet');
+            xhr.open('POST', 'AddProductServlet');
             xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(json);
 
@@ -37,7 +37,6 @@
             };
         }
     </script>
-
 </head>
 
 <body>
@@ -85,7 +84,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Edit Product</h2>
+                        <h2>Add Product</h2>
                         <h5>Welcome Jhon Deo , Love to see you back. </h5>
 
                     </div>
@@ -97,12 +96,12 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                         <!-- Form Elements -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Edit Product
+                                Add Product
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <form role="form" id="editForm" name="editForm">
+                                        <form role="form" id="addForm" name="addForm">
                                             <div class="form-group">
                                                 <img src="assets/img/find_user.png">
                                             </div>
@@ -110,58 +109,49 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                                                 <label>Change Pic</label>
                                                 <input type="file" />
                                             </div>
-                                            <div class="form-group">
-                                                <label>ID</label>
 
-                                                <input type="text" class="form-control" id="productId" name="productId"
-                                                    value="${param.productId}">
-                                            </div>
                                             <div class="form-group">
                                                 <label>Name</label>
 
-                                                <input type="text" class="form-control" id="productName" name="name"
-                                                    value="${param.name}">
+                                                <input type="text" class="form-control" id="productName" name="name">
                                             </div>
                                             <div class="form-group">
                                                 <label>Description</label>
 
                                                 <input type="text" class="form-control" id="productDescription"
-                                                    name="description" value="${param.description}">
+                                                    name="description">
                                             </div>
                                             <div class="form-group">
                                                 <label>Price</label>
 
-                                                <input type="number" class="form-control" id="productPrice" name="price"
-                                                    value="${param.price}">
+                                                <input type="number" class="form-control" id="productPrice"
+                                                    name="price">
                                             </div>
                                             <div class="form-group">
                                                 <label>Quantity</label>
 
                                                 <input type="number" class="form-control" id="productQuantity"
-                                                    name="quantity" value="${param.quantity}">
+                                                    name="quantity">
                                             </div>
                                             <div class="form-group">
                                                 <label>Category</label>
 
-                                                <input type="text" class="form-control" name="category"
-                                                    value="${param.category}">
+                                                <input type="text" class="form-control" name="category">
                                             </div>
                                             <div class="form-group">
                                                 <label>Brand</label>
 
-                                                <input type="text" class="form-control" id="productBrand" name="brand"
-                                                    value="${param.brand}">
+                                                <input type="text" class="form-control" id="productBrand" name="brand">
                                             </div>
                                             <div class="form-group">
                                                 <label>Color</label>
 
-                                                <input type="text" class="form-control" id="productColor" name="color"
-                                                    value="${param.color}">
+                                                <input type="text" class="form-control" id="productColor" name="color">
                                             </div>
 
                                             <button type="button" id="submit" name="submit " class="btn btn-default"
                                                 style="background-color: #f00; color: white;"
-                                                onclick="EditProduct()">Save Changes</button>
+                                                onclick="AddProduct()">Save Changes</button>
                                             <a href="AdminProductsServlet"><button type="button"
                                                     class="btn btn-primary">Back To Products</button></a>
 

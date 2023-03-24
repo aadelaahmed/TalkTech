@@ -1,9 +1,8 @@
-<web-app xmlns= "https://jakarta.ee/xml/ns/jakartaee"
- xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation= "https://jakarta.ee/xml/ns/jakartaee
- https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
- version= "5.0"
- metadata-complete= "true">
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
+    version="5.0"
+    metadata-complete="true">
     <servlet>
         <servlet-name>SignInServlet</servlet-name>
         <servlet-class>org.controller.SignInServlet</servlet-class>
@@ -63,12 +62,36 @@
         <servlet-class>org.controller.EditProfileServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>org.controller.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AdminProductsServlet</servlet-name>
         <servlet-class>org.controller.AdminProductsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProductServlet</servlet-name>
+        <servlet-class>org.controller.EditProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <servlet-class>org.controller.DeleteProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/AddProductServlet</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
         <url-pattern>/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductServlet</servlet-name>
+        <url-pattern>/EditProductServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AdminProductsServlet</servlet-name>
@@ -101,8 +124,7 @@
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>SignUp.jsp</welcome-file>
-      </welcome-file-list>
-    
+    </welcome-file-list>
 
 
 </web-app>

@@ -13,9 +13,10 @@ import java.util.List;
 
 public class AdminProductsServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         ProductService productService = new ProductService();
-        List<Product> productList=productService.getAllProducts();
+        List<Product> productList = productService.getAllProducts();
         // Store the list of data in a request attribute
         request.setAttribute("dataList", productList);
 

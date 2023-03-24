@@ -43,7 +43,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                         <img src="assets/img/find_user.png" class="user-image img-responsive" />
                     </li>
                     <li>
-                        <a href="adminUsers.html"><i class="fa fa-table fa-3x"></i>View Users</a>
+                        <a href="adminUsers.jsp"><i class="fa fa-table fa-3x"></i>View Users</a>
                     </li>
                     <li>
                         <a href="AdminProductsServlet"><i class="fa fa-table fa-3x"></i>View Products</a>
@@ -51,7 +51,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
 
 
                     <li>
-                        <a href="adminEditProduct.html"><i class="fa fa-edit fa-3x"></i> Edit Product</a>
+                        <a href="adminAddProduct.jsp"><i class="fa fa-edit fa-3x"></i> Add Product</a>
                     </li>
 
 
