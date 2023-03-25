@@ -294,9 +294,6 @@
                     </div>
                     <div class="copyright">
                         <div class="container">
-                            <p>© 2019 All Rights Reserved. Design By<a href="https://html.design/"> Free Html
-                                    Templates</a>
-                            </p>
                         </div>
                     </div>
                 </div>

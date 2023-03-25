@@ -94,35 +94,35 @@ function validateOthers() {
   let isValid = true;
 
   if (!name) {
-    nameLabel.innerHTML = "Name field is required";
+    nameLabel.innerHTML = "Field is required";
     isValid = false;
   } else {
     nameLabel.innerHTML = "";
   }
 
   if (!job) {
-    jobLabel.innerHTML = "Job field is required";
+    jobLabel.innerHTML = "Field is required";
     isValid = false;
   } else {
     jobLabel.innerHTML = "";
   }
 
   if (!creditLimit) {
-    creditLimitLabel.innerHTML = "Credit limit field is required";
+    creditLimitLabel.innerHTML = "Field is required";
     isValid = false;
   } else {
     creditLimitLabel.innerHTML = "";
   }
 
   if (!address) {
-    addressLabel.innerHTML = "Address field is required";
+    addressLabel.innerHTML = "Field is required";
     isValid = false;
   } else {
     addressLabel.innerHTML = "";
   }
 
   if (!interests) {
-    interestsLabel.innerHTML = "Interests field is required";
+    interestsLabel.innerHTML = "Field is required";
     isValid = false;
   } else {
     interestsLabel.innerHTML = "";

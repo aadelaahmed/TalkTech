@@ -63,7 +63,7 @@
                 <div class="full">
                   <div class="center-desk">
                     <div class="logo">
-                      <a href="index.html"><img src="images/logo.png" alt="#"></a>
+                      <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
                     </div>
                   </div>
                 </div>
@@ -73,7 +73,7 @@
                   <div class="limit-box">
                     <nav class="main-menu">
                       <ul class="menu-area-main">
-                        <li class="active"> <a href="index.html">Home</a> </li>
+                        <li class="active"> <a href="index.jsp">Home</a> </li>
                         <li> <a href="about.jsp">About</a> </li>
                         <li><a href="category.jsp">Category</a></li>
                         <li><a href="special.jsp">Specials</a></li>
@@ -329,7 +329,6 @@
           </div>
           <div class="copyright">
             <div class="container">
-              <p>© 2019 All Rights Reserved. Design By<a href="https://html.design/"> Free Html Templates</a></p>
             </div>
           </div>
         </div>

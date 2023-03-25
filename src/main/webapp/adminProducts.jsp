@@ -125,7 +125,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                                                             <td><a
                                                                     href="adminEditProduct.jsp?imageUrl=${product.imageUrl}&productId=${product.productId}&name=${product.name}&description=${product.description}&price=${product.price}&quantity=${product.quantity}&color=${product.color}&category=${product.category}&brand=${product.brand}"><input
                                                                         type="button" id="edit"
-                                                                        style="background-color: #d9534f; border: black; color: azure; font-size: medium; "
+                                                                        style="background-color: #428bca; border: black; color: azure; font-size: medium; "
                                                                         value="Edit"></a></td>
                                                             <td><a
                                                                     href="DeleteProductServlet?productId=${product.productId}"><input

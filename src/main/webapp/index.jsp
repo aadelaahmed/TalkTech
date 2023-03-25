@@ -71,7 +71,7 @@
                                         <nav class="main-menu">
                                             <ul class="menu-area-main">
                                                 <li class="active"> <a href="home">Home</a> </li>
-                                                <li> <a href="about.html">About</a> </li>
+                                                <li> <a href="about.jsp">About</a> </li>
                                                 <li><a href="category.jsp">Category</a></li>
                                                 <li><a href="special.jsp">Specials</a></li>
                                                 <li>

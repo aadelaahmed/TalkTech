@@ -74,14 +74,14 @@
                                             <ul class="menu-area-main">
                                                 <li class="active"> <a href="home">Home</a> </li>
                                                 <li> <a href="about.jsp">About</a> </li>
-                                                <li><a href="category.html">Category</a></li>
+                                                <li><a href="category.jsp">Category</a></li>
                                                 <li><a href="special.jsp">Specials</a></li>
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                                 </li>
-                                                <li><a href="cart.html"><img src="images/cart.png" alt="icon" /></a>
+                                                <li><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a>
                                                 </li>
-                                                <li><a href="profile.html"><img src="images/profile.png"
+                                                <li><a href="profile.jsp"><img src="images/profile.png"
                                                             alt="icon" /></a></li>
                                                 <%-- check the value of the 'LoggedIn' attribute --%>
                                                     <c:choose>
