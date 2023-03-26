@@ -9,7 +9,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>SignInServlet</servlet-name>
-        <url-pattern>/signin</url-pattern>
+        <url-pattern>/SignInServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>

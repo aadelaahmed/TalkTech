@@ -64,4 +64,24 @@ public class UserDao {
         return user;
     }
 
+    public User findByEmilandPassword(String email, String password) {
+        EntityManager entityManager = JPAUtil.getEntityManager(); // initialize EntityManager
+        String jpql = "SELECT u FROM User u WHERE u.email = :email and u.password = :password";
+        Query query = entityManager.createQuery(jpql);
+        entityManager.getTransaction().begin();
+        query.setParameter("email", email);
+        query.setParameter("password",password);
+        try {
+            User user = (User) query.getSingleResult();
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return user;
+        } catch (NoResultException e) {
+            e.printStackTrace();
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return null;
+        }
+    }
+
 }
