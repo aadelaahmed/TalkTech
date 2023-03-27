@@ -153,7 +153,7 @@
                                                 <%-- if the attribute is 'false' or not set, show the 'Please log in'
                                                     message --%>
                                                     <c:otherwise>
-                                                        <li> <button id="login" class="send"><img src="images/login.png"
+                                                        <li> <button id="login" onclick="window.location.href='login.jsp'" class="send"><img src="images/login.png"
                                                                     alt="icon" />Login</button></li>
                                                     </c:otherwise>
                                                     </c:choose>
@@ -331,12 +331,10 @@
                                     </ul>
                                     <div class="menu-bottom">
                                         <ul class="link">
-                                            <li> <a href="#">Home</a></li>
-                                            <li> <a href="#">About</a></li>
-
-                                            <li> <a href="#">Brand </a></li>
-                                            <li> <a href="#">Specials </a></li>
-                                            <li> <a href="#"> Contact us</a></li>
+                                            <li> <a href="home">Home</a></li>
+                                            <li> <a href="about.jsp">About</a></li>
+                                            <li> <a href="category.jsp">Category </a></li>
+                                            <li> <a href="special.jsp">Specials </a></li>
                                         </ul>
                                     </div>
                                 </div>

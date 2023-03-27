@@ -30,6 +30,7 @@
         <url-pattern>/EditProfileServlet</url-pattern>
         <url-pattern>/editprofile.jsp</url-pattern>
         <url-pattern>/profile.jsp</url-pattern>
+
         <!-- Add more URL patterns as needed -->
     </filter-mapping>
 
