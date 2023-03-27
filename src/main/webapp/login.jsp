@@ -63,6 +63,7 @@
                     emailValidate.innerHTML = xmlvalue;
 
                 }
+
                 else {
                     var xmlvalue = req.responseText;
                     if (xmlvalue.trim() === 'Email and/or password are not valid.') {
@@ -76,6 +77,7 @@
                     emailValidate.innerHTML = xmlvalue;
 
                 }
+
             };
 
             var emailValue = document.getElementById("email").value;
