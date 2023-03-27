@@ -116,7 +116,7 @@
                                 <div class="full">
                                     <div class="center-desk">
                                         <div class="logo">
-                                            <a href="home.jsp"><img src="images/logo.png" alt="#"></a>
+                                            <a href="home"><img src="images/logo.png" alt="#"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
                                             <ul class="menu-area-main">
                                                 <li class="active"> <a href="home">Home</a> </li>
                                                 <li> <a href="about.jsp">About</a> </li>
-                                                <li><a href="brand.jsp">Category</a></li>
+                                                <li><a href="category.jsp">Category</a></li>
                                                 <li><a href="special.jsp">Specials</a></li>
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>

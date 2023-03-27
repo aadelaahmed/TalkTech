@@ -65,7 +65,7 @@ font-size: 16px;"> &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">L
                 <div class="row">
                     <div class="col-md-12">
                         <h2>View Users</h2>
-                        <h5>Welcome Jhon Deo , Love to see you back. </h5>
+                        <h5>Welcome ${sessionScope.userName} , Love to see you back. </h5>
 
                     </div>
                 </div>

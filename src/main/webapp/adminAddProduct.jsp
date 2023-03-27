@@ -61,7 +61,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Add Product</h2>
-                        <h5>Welcome Jhon Deo , Love to see you back. </h5>
+                        <h5>Welcome ${sessionScope.userName} , Love to see you back. </h5>
 
                     </div>
                 </div>
@@ -79,10 +79,7 @@ font-size: 16px;">&nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Lo
                                     <div class="col-md-6">
                                         <form role="form" id="addForm" name="addForm" method="post" action="AddProductServlet" enctype="multipart/form-data">
                                             <div class="form-group">
-                                                <img src="assets/img/find_user.png">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Change Pic</label>
+                                                <label>Add Pic</label>
                                                 <input type="file" name="file"/>
                                             </div>
 
