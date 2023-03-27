@@ -1,53 +1,119 @@
-var cart = getCartFromLocalStorage() || { items: [], total: 0 };
+const email = "aa@gmail.com";
+initializeCart();
+function checkQuantity(input) {
+  console.log("check quantity is fired");
+    var maxQuantity = Number(input.getAttribute("max"));
+    var currentQuantity = Number(input.value);
+    var errorSpan = document.getElementById("quantity-error-" + input.id);
+    errorSpan.innerText = "hello world";
+    // console.log("product id ->"+input.id);
+    // console.log("currentQuantity ->"+currentQuantity);
+    // console.log("maxQuantity ->"+maxQuantity);
+    if (currentQuantity > maxQuantity) {
+      // console.log("Quantity cannot exceed " + maxQuantity)
+      errorSpan.textContent = "Quantity cannot exceed " + maxQuantity;
+    } else {
+      //console.log("allowable")
+      errorSpan.textContent = "";
+    }
+}
+function initializeCart() {
+  //const email = "${sessionScope.email}";
+  // Send AJAX request to retrieve the list of products
+  // $.ajax({
+  //   url: "cart",
+  //   type: "POST",
+  //   data: {
+  //     action: "getInitialCart",
+  //     email: email
+  //   },
+  //   success: function(response) {
+  //     // Populate the cart container with the list of products
+  //     //$("#cart-container").html(response);
+  //     console.log("success initial cart -> "+response);
+  //   }
+  // });
 
-function addToCart(item) {
-  cart.items.push(item);
-  cart.total += item.price;
-  localStorage.setItem('cart', JSON.stringify(cart));
-  renderCart();
+  console.log("start initilizing the cart screen");
+  $.ajax({
+    url: "cart",
+    method: "POST",
+    dataType: "json",
+    data: {
+        action: "getInitialCart",
+        email: email
+    },
+    success: function(response) {
+        // Parse the JSON response
+        console.log("respone from initilize cart ->"+response);
+        try{
+          var cartItems = JSON.parse(response);
+
+        }
+        catch(error) {
+          console.error('Error parsing JSON:', error);
+      }
+        console.log("respone from initilize cart ->"+response);
+        // Clear the contents of the cart-items div
+        populateProducts(cartItems);
+    }, error: function(jqXHR, textStatus, errorThrown) {
+      console.log(textStatus, errorThrown);
+    }
+});
+
+}
+function populateProducts(cartItems){
+        $('#cart-items').empty();
+        console.log("cart items in populate products -> "+cartItems);
+        // Iterate over the cartItems array and append each item to the cart-items div
+        $.each(cartItems, function(index, product) {
+            var itemHtml = '<div class="row mb-4 d-flex justify-content-between align-items-center">' +
+                               '<div class="col-md-2 col-lg-2 col-xl-2">' +
+                                   '<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp" class="img-fluid rounded-3" alt="Cotton T-shirt">' +
+                               '</div>' +
+                               '<div class="col-md-3 col-lg-3 col-xl-3">' +
+                                   '<h6 class="text-muted">' + product.brand + '</h6>' +
+                                   '<h6 class="text-black mb-0">' + product.name + '</h6>' +
+                               '</div>' +
+                               '<div class="col-md-3 col-lg-3 col-xl-2 d-flex">' +
+                                   '<button class="btn btn-link px-2" onclick="const downInputField = this.parentNode.querySelector(\'input[type=number]\'); downInputField.stepDown(); checkQuantity(downInputField);"><i class="fas fa-minus"></i></button>' +
+                                   '<input name="quantity" value="' + product.qtyInCart + '" id="' + product.productId + '" type="number" min="1" max="' + product.qtyInStock + '" style="width: 70px;" oninput="checkQuantity(this)">' +
+                                   '<button class="btn btn-link px-2" onclick="const upInputField = this.parentNode.querySelector(\'input[type=number]\'); upInputField.stepUp(); checkQuantity(upInputField);"><i class="fas fa-plus"></i></button>' +
+                                   '<span style="color: #c41a17;" class="text-danger" id="quantity-error-' + product.productId + '"></span>' +
+                               '</div>' +
+                               '<div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">' +
+                                   '<h6 class="mb-0">€ ' + product.price + '</h6>' +
+                               '</div>' +
+                               '<div class="col-md-1 col-lg-1 col-xl-1 text-end">' +
+                                   '<a onclick="deleteProductFromCart(' + product.productId + ')" class="text-muted"><i class="fas fa-times"></i></a>' +
+                               '</div>' +
+                           '</div>' +
+                           '<hr class="my-4">';
+
+            $('#cart-items').append(itemHtml);
+        });
 }
 
-function removeFromCart(index) {
-  const item = cart.items[index];
-  cart.items.splice(index, 1);
-  cart.total -= item.price;
-  localStorage.setItem('cart', JSON.stringify(cart));
-  renderCart();
-}
 
-function getCartFromLocalStorage() {
-  const cartData = localStorage.getItem('cart');
-  if (cartData) {
-    return JSON.parse(cartData);
-  } else {
-    return null;
-  }
-}
 
-function renderCart() {
-  const cartElement = document.getElementById('cart');
-  cartElement.innerHTML = '';
 
-  cart.items.forEach((item, index) => {
-    const li = document.createElement('li');
-    const nameSpan = document.createElement('span');
-    const priceSpan = document.createElement('span');
-    const removeButton = document.createElement('button');
-
-    nameSpan.innerText = item.name;
-    priceSpan.innerText = `$${item.price.toFixed(2)}`;
-    removeButton.innerText = 'Remove';
-    removeButton.addEventListener('click', () => removeFromCart(index));
-
-    li.appendChild(nameSpan);
-    li.appendChild(priceSpan);
-    li.appendChild(removeButton);
-    cartElement.appendChild(li);
+function deleteProductFromCart(productId) {
+  //const email = "${sessionScope.email}";
+  // Send AJAX request to delete the product from the cart
+  $.ajax({
+    url: "cart",
+    type: "POST",
+    data: {
+      action: "removeProduct",
+      email: email,
+      productId: productId
+    },
+    success: function(response) {
+      // Reload the cart by calling initializeCart() to retrieve the updated list of products
+      console.log("success removed case in cart -> "+response);
+      var cartItems = JSON.parse(response);
+      populateProducts(cartItems);
+      //initializeCart();
+    }
   });
-
-  const totalElement = document.createElement('li');
-  totalElement.innerText = `Total: $${cart.total.toFixed(2)}`;
-  cartElement.appendChild(totalElement);
 }
-
-renderCart();

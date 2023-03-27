@@ -14,9 +14,9 @@ https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
             <property name="hibernate.connection.maxPoolSize" value="20"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/talktech"/>
-            <property name="jakarta.persistence.jdbc.user" value="talktech"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.password" value="admin"/>
+            <property name="jakarta.persistence.jdbc.password" value="root"/>
             <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->
         </properties>
     </persistence-unit>

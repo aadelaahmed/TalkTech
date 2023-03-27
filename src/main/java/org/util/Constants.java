@@ -18,4 +18,5 @@ public class Constants {
     public static final List<String> categories = Arrays.asList("mobile phones","headphones","smart watches");
     public static final List<String> brands = Arrays.asList("apple","samsung","oppo", "realme","xiaomi");
 
+    public static final String USER_EMAIL = "aa@gmail.com";
 }
