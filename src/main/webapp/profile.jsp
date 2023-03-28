@@ -121,7 +121,7 @@
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                                 </li>
-                                                <li><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a></li>
+                                                <li><a href="showCart"><img src="images/cart.png" alt="icon" /></a></li>
                                                 <li><a href="profile.jsp"><img src="images/profile.png"
                                                             alt="icon" /></a>
                                                     <%-- check the value of the 'LoggedIn' attribute --%>

@@ -44,21 +44,22 @@
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
             <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
             <link rel="stylesheet" href="css/popup.css">
-            
+
         <script>
                 function Logout(event) {
                     console.log('inside Logout');
-                    event.preventDefault();   
+                    event.preventDefault();
                       $.ajax({
                           url: "LogoutServlet",
                           type: "POST",
                           success: function(){
                               var popup = document.getElementById("popup");
                               popup.style.display = "block";
-                          }                                
+                          }
                       });
-                  
+
                 }</script>
+            <script src="js/productitem.js"></script>
         </head>
         <!-- body -->
 
@@ -103,7 +104,7 @@
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                                 </li>
-                                                <li><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a></li>
+                                                <li><a href="showCart"><img src="images/cart.png" alt="icon" /></a></li>
                                                 <li><a href="profile.jsp"><img src="images/profile.png"
                                                             alt="icon" /></a></li>
                                                 <%-- check the value of the 'LoggedIn' attribute --%>

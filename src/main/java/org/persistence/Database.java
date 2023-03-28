@@ -17,7 +17,9 @@ public class Database {
             return result;
         } catch (Exception e) {
             transaction.rollback();
+            System.out.println(e);
             throw e;
+            //return null;
         } finally {
             entityManager.close();
         }

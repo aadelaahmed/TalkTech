@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -43,28 +44,31 @@
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <script src="js/cart.js"></script>
+
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       <link rel="stylesheet" href="css/popup.css">
-      
+
   <script>
           function Logout(event) {
               console.log('inside Logout');
-              event.preventDefault();   
+              event.preventDefault();
                 $.ajax({
                     url: "LogoutServlet",
                     type: "POST",
                     success: function(){
                         var popup = document.getElementById("popup");
                         popup.style.display = "block";
-                    }                                
+                    }
                 });
-            
+
           }</script>
     </head>
     <!-- body -->
 
     <body class="main-layout">
+      <c:set var="totalPrice" value="0" />
       <!-- loader  -->
       <div class="loader_bg">
         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
@@ -88,7 +92,7 @@
                 <div class="full">
                   <div class="center-desk">
                     <div class="logo">
-                      <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
+                      <a href="home"><img src="images/logo.png" alt="#"></a>
                     </div>
                   </div>
                 </div>
@@ -98,14 +102,14 @@
                   <div class="limit-box">
                     <nav class="main-menu">
                       <ul class="menu-area-main">
-                        <li class="active"> <a href="index.jsp">Home</a> </li>
+                        <li class="active"> <a href="home">Home</a> </li>
                         <li> <a href="about.jsp">About</a> </li>
                         <li><a href="category.jsp">Category</a></li>
                         <li><a href="special.jsp">Specials</a></li>
                         <li class="last">
                           <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                         </li>
-                        <li><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a></li>
+                        <li><a href="showCart"><img src="images/cart.png" alt="icon" /></a></li>
                         <li><a href="profile.jsp"><img src="images/profile.png" alt="icon" /></a></li>
                         <%-- check the value of the 'LoggedIn' attribute --%>
                           <c:choose>
@@ -170,11 +174,55 @@
                             <div class="p-5">
                               <div class="d-flex justify-content-between align-items-center mb-5">
                                 <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                                <h6 class="mb-0 text-muted">3 items</h6>
+                                <h6 class="mb-0 text-muted"><c:out value="${fn:length(cartProducts)}" /> Items</h6>
+
                               </div>
                               <hr class="my-4">
+                              <c:forEach var="product" items="${cartProducts}">
+                                <div id="container-cart-${product.productId}" class="product-container row mb-4 d-flex justify-content-between align-items-center">
+                                  <div class="col-md-2 col-lg-2 col-xl-2">
+                                    <img
+                                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
+                                      class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                  </div>
+                                  <div class="col-md-3 col-lg-3 col-xl-3">
+                                    <h6 class="text-muted">${product.brand}</h6>
+                                    <h6 class="text-black mb-0">${product.name}</h6>
+                                  </div>
+                                  <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                    <button class="btn btn-link px-2"
+                                      onclick="const downInputField = this.parentNode.querySelector('input[type=number]');
+                                      downInputField.stepDown();
+                                      checkQuantity(downInputField);">
+                                      <i class="fas fa-minus"></i>
+                                    </button>
 
-                              <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                    <input name="quantity" value="${product.qtyInCart}" id="${product.productId}" type="number" min="1" max="${product.qtyInStock}" style="width: 70px;" onblur="checkQuantity(this)"  >
+
+                                    <button class="btn btn-link px-2"
+                                      onclick="const upInputField = this.parentNode.querySelector('input[type=number]');
+                                      upInputField.stepUp();
+                                      checkQuantity(upInputField);">
+                                      <i class="fas fa-plus"></i>
+                                    </button>
+                                    <span style="color: #c41a17;" class="text-danger" id="quantity-error-${product.productId}">
+                                      <c:if test="${product.qtyInCart > product.qtyInStock}">
+                                        Quantity cannot exceed ${product.qtyInStock}
+                                      </c:if>
+                                    </span>
+                                  </div>
+                                  <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                    <h6 class="mb-0">€${product.price}</h6>
+                                  </div>
+                                  <div onclick="removeProduct(this,event)" data-product="${product.productId}"  class="remove-product col-md-1 col-lg-1 col-xl-1 text-end">
+                                    <a style="cursor: pointer;"  class="text-muted"><i class="fas fa-times"></i></a>
+                                  </div>
+                                </div>
+                                <hr class="my-4">
+
+                            </c:forEach>
+
+                              <!-- <div class="row mb-4 d-flex justify-content-between align-items-center">
                                 <div class="col-md-2 col-lg-2 col-xl-2">
                                   <img
                                     src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
@@ -269,7 +317,7 @@
                                 <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                   <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                                 </div>
-                              </div>
+                              </div> -->
 
                               <hr class="my-4">
 
@@ -285,18 +333,18 @@
                               <hr class="my-4">
 
                               <div class="d-flex justify-content-between mb-4">
-                                <h5 class="text-uppercase">items 3</h5>
-                                <h5>€ 132.00</h5>
+                                <h5 class="text-uppercase">Items <c:out value="${fn:length(cartProducts)}" /> </h5>
+                                <c:forEach items="${cartProducts}" var="item">
+                                  <c:set var="totalPrice" value="${totalPrice + item.price}" />
+                              </c:forEach>
+                                <h5>${totalPrice} egy</h5>
                               </div>
-
-
-
 
                               <hr class="my-4">
 
                               <div class="d-flex justify-content-between mb-5">
                                 <h5 class="text-uppercase">Total price</h5>
-                                <h5>€ 137.00</h5>
+                                <h5>${totalPrice} egy</h5>
                               </div>
 
                               <button type="button" class="btn btn-dark btn-block btn-lg"
