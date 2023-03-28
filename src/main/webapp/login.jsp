@@ -61,7 +61,6 @@
                         window.location.href = 'home';
                     }
                     emailValidate.innerHTML = xmlvalue;
-
                 }
 
                 else {
