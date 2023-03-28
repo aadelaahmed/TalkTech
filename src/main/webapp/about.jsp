@@ -37,10 +37,35 @@
             <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+      <link rel="stylesheet" href="css/popup.css">
+      
+  <script>
+          function Logout(event) {
+              console.log('inside Logout');
+              event.preventDefault();   
+                $.ajax({
+                    url: "LogoutServlet",
+                    type: "POST",
+                    success: function(){
+                        var popup = document.getElementById("popup");
+                        popup.style.display = "block";
+                    }                                
+                });
+            
+          }</script>
         </head>
         <!-- body -->
 
         <body class="main-layout">
+            <div class="popup_box" id="popup" style="display:none">
+                <i class="fas fa-exclamation"></i>
+                <h1>You Have Successfully Logged Out</h1>
+                <div class="btns">
+                  <a href="home" class="btn1">Continue</a>
+                </div>
+              </div>
             <!-- loader  -->
             <div class="loader_bg">
                 <div class="loader"><img src="images/loading.gif" alt="#" /></div>
@@ -82,7 +107,7 @@
                                                         <%-- if the attribute is 'true' , show the 'Welcome' message
                                                             --%>
                                                             <c:when test="${sessionScope.LoggedIn == true}">
-                                                                <li> <button id="logout" class="send"><img
+                                                                <li> <button id="logout" onclick="Logout(event)" class="send"><img
                                                                             src="images/logout.png"
                                                                             alt="icon" />Logout</button></li>
                                                             </c:when>

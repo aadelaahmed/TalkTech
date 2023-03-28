@@ -20,6 +20,10 @@
         <servlet-name>SignUpServlet</servlet-name>
         <servlet-class>org.controller.SignUpServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>org.controller.LogoutServlet</servlet-class>
+    </servlet>
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>org.controller.AuthenticationFilter</filter-class>
@@ -37,6 +41,10 @@
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>CartServlet</servlet-name>
