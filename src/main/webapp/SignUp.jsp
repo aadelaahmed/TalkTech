@@ -162,7 +162,7 @@
                                 <div class="location_icon_bottum">
                                     <ul>
                                         <li><img src="icon/call.png" />(+71)9876543109</li>
-                                        <li><img src="icon/email.png" />demo@gmail.com</li>
+                                        <li><img src="icon/email.png" />TalkTech@gmail.com</li>
                                         <li><img src="icon/loc.png" />Location</li>
                                     </ul>
                                 </div>

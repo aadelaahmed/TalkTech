@@ -162,6 +162,7 @@
                         <button class="filter-button send" data-filter="mobile phones">Mobile Phones</button>
                         <button class="filter-button send" data-filter="headphones">Headphones</button>
                         <button class="filter-button send" data-filter="smart watches">Smart Watches</button>
+                        <hr style="border: 1px solid red;">
                     </div>
                 </div>
                 <div></div>
