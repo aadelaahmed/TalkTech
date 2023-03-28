@@ -69,6 +69,12 @@
         <servlet-name>AdminProductsServlet</servlet-name>
         <servlet-class>org.controller.AdminProductsServlet</servlet-class>
     </servlet>
+
+    <servlet>
+        <servlet-name>AdminUsersServlet</servlet-name>
+        <servlet-class>org.controller.AdminUsersServlet</servlet-class>
+    </servlet>
+
     <servlet>
         <servlet-name>EditProductServlet</servlet-name>
         <servlet-class>org.controller.EditProductServlet</servlet-class>
@@ -97,6 +103,12 @@
         <servlet-name>AdminProductsServlet</servlet-name>
         <url-pattern>/AdminProductsServlet</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AdminUsersServlet</servlet-name>
+        <url-pattern>/AdminUsersServlet</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>SignUpServlet</servlet-name>
         <url-pattern>/SignUpServlet</url-pattern>

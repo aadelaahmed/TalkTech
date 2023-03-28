@@ -3,11 +3,19 @@ package org.persistence.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+import org.persistence.Database;
 import org.persistence.JPAUtil;
 import org.persistence.entities.User;
+import java.util.*;
+import java.util.List;
 
 public class UserDao {
 
+    public UserDao() {
+    }
     public User findById(Long id) {
         User user = JPAUtil.getEntityManager().find(User.class, id);
         return user;
@@ -83,5 +91,35 @@ public class UserDao {
             return null;
         }
     }
+
+
+    public List<User> getAllUser() {
+        return Database.doInTransaction(
+                paramEntityManager -> {
+                    CriteriaBuilder criteriaBuilder = paramEntityManager.getCriteriaBuilder();
+                    CriteriaQuery<User> queryUser = criteriaBuilder.createQuery(User.class);
+                    Root<User> rootUser = queryUser.from(User.class);
+                    queryUser.select(rootUser);
+                    Query query = paramEntityManager.createQuery(queryUser);
+                    List<User> users = query.getResultList();
+                    return users;
+                });
+    }
+
+    /*
+    *  @Override
+    public List<User> getUsers() {
+        Query query = entityManager.createQuery("from User", User.class);
+        return query.getResultList();
+    }
+    *
+    * UserRepo -> interface contain getUsers();
+    *  UserRepo userRepo = new UserRepo(entityManager);
+    *
+    *  List<User> listOUsers = userRepo.getUsers();
+        for (User u : listOUsers) {
+            System.out.println(u.getEmail());
+        }
+    * */
 
 }
