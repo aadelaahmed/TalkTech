@@ -44,25 +44,8 @@
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-      <script>
-         function checkQuantity(input) {
-          console.log("check quantity is fired");
-            var maxQuantity = Number(input.getAttribute("max"));
-            var currentQuantity = Number(input.value);
-            var errorSpan = document.getElementById("quantity-error-" + input.id);
-            errorSpan.innerText = "hello world";
-            // console.log("product id ->"+input.id);
-            // console.log("currentQuantity ->"+currentQuantity);
-            // console.log("maxQuantity ->"+maxQuantity);
-            if (currentQuantity > maxQuantity) {
-              // console.log("Quantity cannot exceed " + maxQuantity)
-              errorSpan.textContent = "Quantity cannot exceed " + maxQuantity;
-            } else {
-              //console.log("allowable")
-              errorSpan.textContent = "";
-            }
-        }
-      </script>
+      <script src="js/cart.js"></script>
+      
     </head>
     <!-- body -->
 
@@ -84,7 +67,7 @@
                 <div class="full">
                   <div class="center-desk">
                     <div class="logo">
-                      <a href="index.html"><img src="images/logo.png" alt="#"></a>
+                      <a href="home"><img src="images/logo.png" alt="#"></a>
                     </div>
                   </div>
                 </div>
@@ -94,14 +77,14 @@
                   <div class="limit-box">
                     <nav class="main-menu">
                       <ul class="menu-area-main">
-                        <li class="active"> <a href="index.html">Home</a> </li>
+                        <li class="active"> <a href="home">Home</a> </li>
                         <li> <a href="about.jsp">About</a> </li>
                         <li><a href="category.jsp">Category</a></li>
                         <li><a href="special.jsp">Specials</a></li>
                         <li class="last">
                           <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                         </li>
-                        <li><a href="cart"><img src="images/cart.png" alt="icon" /></a></li>
+                        <li><a href="showCart"><img src="images/cart.png" alt="icon" /></a></li>
                         <li><a href="profile.jsp"><img src="images/profile.png" alt="icon" /></a></li>
                         <%-- check the value of the 'LoggedIn' attribute --%>
                           <c:choose>
@@ -170,9 +153,8 @@
 
                               </div>
                               <hr class="my-4">
-
                               <c:forEach var="product" items="${cartProducts}">
-                                <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                <div id="container-cart-${product.productId}" class="product-container row mb-4 d-flex justify-content-between align-items-center">
                                   <div class="col-md-2 col-lg-2 col-xl-2">
                                     <img
                                       src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
@@ -190,7 +172,7 @@
                                       <i class="fas fa-minus"></i>
                                     </button>
                                     
-                                    <input name="quantity" value="${product.qtyInCart}" id="${product.productId}" type="number" min="1" max="${product.qtyInStock}" style="width: 70px;"  oninput="checkQuantity(this)">
+                                    <input name="quantity" value="${product.qtyInCart}" id="${product.productId}" type="number" min="1" max="${product.qtyInStock}" style="width: 70px;" onblur="checkQuantity(this)"  >
   
                                     <button class="btn btn-link px-2"
                                       onclick="const upInputField = this.parentNode.querySelector('input[type=number]');
@@ -198,13 +180,17 @@
                                       checkQuantity(upInputField);">
                                       <i class="fas fa-plus"></i>
                                     </button>
-                                    <span style="color: #c41a17;" class="text-danger" id="quantity-error-${product.productId}"></span>
+                                    <span style="color: #c41a17;" class="text-danger" id="quantity-error-${product.productId}">
+                                      <c:if test="${product.qtyInCart > product.qtyInStock}">
+                                        Quantity cannot exceed ${product.qtyInStock}
+                                      </c:if>
+                                    </span>
                                   </div>
                                   <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                    <h6 class="mb-0">€ ${product.price}</h6>
+                                    <h6 class="mb-0">€${product.price}</h6>
                                   </div>
-                                  <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                    <a onclick="deleteProductFromCart(${product.productId})" class="text-muted"><i class="fas fa-times"></i></a>
+                                  <div onclick="removeProduct(this,event)" data-product="${product.productId}"  class="remove-product col-md-1 col-lg-1 col-xl-1 text-end">
+                                    <a style="cursor: pointer;"  class="text-muted"><i class="fas fa-times"></i></a>
                                   </div>
                                 </div>
                                 <hr class="my-4">

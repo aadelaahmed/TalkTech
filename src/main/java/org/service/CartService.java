@@ -17,4 +17,14 @@ public class CartService {
     public int getCartId(String email){
         return cartDao.getCartId(email);
     }
+    public Boolean deleteProductFromCart(int cartId, int productId){
+        return cartDao.deleteProductFromCart(cartId,productId);
+    }
+
+    public Boolean updateProductInCart(int cartId, int productId, int newQuantity ){
+        return cartDao.updateProductQuantity(cartId,productId,newQuantity);
+    }
+    public Boolean addProductToCart(int cartId,int productId){
+        return cartDao.addProductToCart(cartId,productId);
+    }
 }

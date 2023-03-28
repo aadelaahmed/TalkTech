@@ -1,7 +1,9 @@
-function onAddToCartClicked(){
-    var productId = productJson.productId;
-    console.log("add to cart button was fired");
-    console.log("check on product id -> "+productId);
+function onBuyNowClicked(event,productId){
+    event.stopPropagation();
+    console.log("product id in home js buy now ->"+productId);
+    //var productId = productJson.productId;
+    console.log("buy now button was fired");
+    console.log("check on product id on buy now -> "+productId);
     var url = 'addToCart';
     var params = 'productId=' + productId;
     var xhr = new XMLHttpRequest();
@@ -17,4 +19,3 @@ function onAddToCartClicked(){
     }
     xhr.send(params);
 }
-

@@ -41,6 +41,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
             <script src="js/categorybuttons.js"></script>
+            <script src="js/productitem.js"></script>
         </head>
         <!-- body -->
 
@@ -78,7 +79,7 @@
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                                 </li>
-                                                <li><a href="cart"><img src="images/cart.png" alt="icon" /></a></li>
+                                                <li><a href="showCart"><img src="images/cart.png" alt="icon" /></a></li>
                                                 <li><a href="profile.jsp"><img src="images/profile.png"
                                                             alt="icon" /></a></li>
                                                 <%-- check the value of the 'LoggedIn' attribute --%>

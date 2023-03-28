@@ -3,3 +3,5 @@ function onProductItemClicked(productId){
     const servletUrl = 'productdetails?productid=' + productId;
     window.location.href = servletUrl;
 }
+
+function 

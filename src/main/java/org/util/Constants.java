@@ -19,4 +19,8 @@ public class Constants {
     public static final List<String> brands = Arrays.asList("apple","samsung","oppo", "realme","xiaomi");
 
     public static final String USER_EMAIL = "aa@gmail.com";
+    public static final String SHOW_CART_URL_MAPPING= "showCart";
+    public static final String UPDATE_CART_URL_MAPPING= "updateInCart";
+    public static final String DELETE_CART_URL_MAPPING= "removeFromCart";
+    public static final String ADD_CART_URL_MAPPING= "addToCart";
 }

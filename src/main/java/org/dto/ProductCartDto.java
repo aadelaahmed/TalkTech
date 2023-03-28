@@ -11,15 +11,18 @@ public class ProductCartDto implements Serializable {
     int qtyInCart;
     int qtyInStock;
     BigDecimal price;
-    public ProductCartDto(){
+
+    public ProductCartDto() {
 
     }
 
+
     @Override
     public String toString() {
-        return "ProductCartDto{" +
-                "name='" + name + '\'' +
-                ", category='" + brand + '\'' +
+        return "{" +
+                "productId=" + productId +
+                ", name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", qtyInCart=" + qtyInCart +
                 ", qtyInStock=" + qtyInStock +
@@ -27,7 +30,7 @@ public class ProductCartDto implements Serializable {
                 '}';
     }
 
-    public ProductCartDto(Integer productId,String name, String brand, String imageUrl, int qtyInCart, int qtyInStock, BigDecimal price) {
+    public ProductCartDto(Integer productId, String name, String brand, String imageUrl, int qtyInCart, int qtyInStock, BigDecimal price) {
         this.productId = productId;
         this.name = name;
         this.brand = brand;
