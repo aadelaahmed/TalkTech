@@ -11,7 +11,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="viewport" content="initial-scale=1, maximum-scale=1">
             <!-- site metas -->
-            <title>pomato</title>
+            <title>Product Details</title>
             <meta name="keywords" content="">
             <meta name="description" content="">
             <meta name="author" content="">
@@ -42,6 +42,24 @@
             <script>
                 var productJson = ${ productJson };
             </script>
+                      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+                      <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+                      <link rel="stylesheet" href="css/popup.css">
+
+                  <script>
+                          function Logout(event) {
+                              console.log('inside Logout');
+                              event.preventDefault();
+                                $.ajax({
+                                    url: "LogoutServlet",
+                                    type: "POST",
+                                    success: function(){
+                                        var popup = document.getElementById("popup");
+                                        popup.style.display = "block";
+                                    }
+                                });
+
+                          }</script>
         </head>
         <!-- body -->
 
@@ -53,6 +71,13 @@
             <!-- end loader -->
             <!-- header -->
             <header>
+                <div class="popup_box" id="popup" style="display:none">
+                    <i class="fas fa-exclamation"></i>
+                    <h1>You Have Successfully Logged Out</h1>
+                    <div class="btns">
+                      <a href="home" class="btn1">Continue</a>
+                    </div>
+                  </div>
                 <!-- header inner -->
                 <div class="header">
 
@@ -79,7 +104,7 @@
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                                 </li>
-                                                <li><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a>
+                                                <li><a href="showCart"><img src="images/cart.png" alt="icon" /></a>
                                                 </li>
                                                 <li><a href="profile.jsp"><img src="images/profile.png"
                                                             alt="icon" /></a></li>
@@ -88,14 +113,14 @@
                                                         <%-- if the attribute is 'true' , show the 'Welcome' message
                                                             --%>
                                                             <c:when test="${sessionScope.LoggedIn == true}">
-                                                                <li> <button id="logout" class="send"><img
+                                                                <li> <button id="logout" onclick="Logout(event)" class="send"><img
                                                                             src="images/logout.png"
                                                                             alt="icon" />Logout</button></li>
                                                             </c:when>
                                                             <%-- if the attribute is 'false' or not set, show
                                                                 the 'Please log in' message --%>
                                                                 <c:otherwise>
-                                                                    <li> <button id="login" class="send"><img
+                                                                    <li> <button id="login" onclick="window.location.href='login.jsp'" class="send"><img
                                                                                 src="images/login.png"
                                                                                 alt="icon" />Login</button></li>
                                                                 </c:otherwise>
@@ -207,11 +232,9 @@
                                     <div class="menu-bottom">
                                         <ul class="link">
                                             <li> <a href="home">Home</a></li>
-                                            <li> <a href="#">About</a></li>
-
-                                            <li> <a href="#">Brand </a></li>
-                                            <li> <a href="#">Specials </a></li>
-                                            <li> <a href="#"> Contact us</a></li>
+                                            <li> <a href="about.jsp">About</a></li>
+                                            <li> <a href="category.jsp">Category </a></li>
+                                            <li> <a href="special.jsp">Specials </a></li>
                                         </ul>
                                     </div>
                                 </div>

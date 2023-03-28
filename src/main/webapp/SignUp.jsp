@@ -116,7 +116,7 @@
                                 <div class="full">
                                     <div class="center-desk">
                                         <div class="logo">
-                                            <a href="home.jsp"><img src="images/logo.png" alt="#"></a>
+                                            <a href="home"><img src="images/logo.png" alt="#"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -128,12 +128,12 @@
                                             <ul class="menu-area-main">
                                                 <li class="active"> <a href="home">Home</a> </li>
                                                 <li> <a href="about.jsp">About</a> </li>
-                                                <li><a href="brand.jsp">Category</a></li>
+                                                <li><a href="category.jsp">Category</a></li>
                                                 <li><a href="special.jsp">Specials</a></li>
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                                 </li>
-                                                <li><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a></li>
+                                                <li><a href="showCart"><img src="images/cart.png" alt="icon" /></a></li>
                                                 <li><a href="profile.jsp"><img src="images/profile.png"
                                                             alt="icon" /></a></li>
                                                 <%-- check the value of the 'LoggedIn' attribute --%>
@@ -148,7 +148,7 @@
                                                             <%-- if the attribute is 'false' or not set, show
                                                                 the 'Please log in' message --%>
                                                                 <c:otherwise>
-                                                                    <li> <button id="login" class="send"><img
+                                                                    <li> <button id="login" onclick="window.location.href='login.jsp'" class="send"><img
                                                                                 src="images/login.png"
                                                                                 alt="icon" />Login</button></li>
                                                                 </c:otherwise>
@@ -162,7 +162,7 @@
                                 <div class="location_icon_bottum">
                                     <ul>
                                         <li><img src="icon/call.png" />(+71)9876543109</li>
-                                        <li><img src="icon/email.png" />demo@gmail.com</li>
+                                        <li><img src="icon/email.png" />TalkTech@gmail.com</li>
                                         <li><img src="icon/loc.png" />Location</li>
                                     </ul>
                                 </div>
@@ -270,11 +270,9 @@
                                     <div class="menu-bottom">
                                         <ul class="link">
                                             <li> <a href="home">Home</a></li>
-                                            <li> <a href="#">About</a></li>
-
-                                            <li> <a href="#">Brand </a></li>
-                                            <li> <a href="#">Specials </a></li>
-                                            <li> <a href="#">Sign In</a></li>
+                                            <li> <a href="about.jsp">About</a></li>
+                                            <li> <a href="category.jsp">Category </a></li>
+                                            <li> <a href="special.jsp">Specials </a></li>
                                         </ul>
                                     </div>
                                 </div>

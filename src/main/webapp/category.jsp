@@ -41,6 +41,25 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
             <script src="js/categorybuttons.js"></script>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+            <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            <link rel="stylesheet" href="css/popup.css">
+
+        <script>
+                function Logout(event) {
+                    console.log('inside Logout');
+                    event.preventDefault();
+                      $.ajax({
+                          url: "LogoutServlet",
+                          type: "POST",
+                          success: function(){
+                              var popup = document.getElementById("popup");
+                              popup.style.display = "block";
+                          }
+                      });
+
+                }</script>
+            <script src="js/productitem.js"></script>
         </head>
         <!-- body -->
 
@@ -52,6 +71,13 @@
             <!-- end loader -->
             <!-- header -->
             <header>
+                <div class="popup_box" id="popup" style="display:none">
+                    <i class="fas fa-exclamation"></i>
+                    <h1>You Have Successfully Logged Out</h1>
+                    <div class="btns">
+                      <a href="home" class="btn1">Continue</a>
+                    </div>
+                  </div>
                 <!-- header inner -->
                 <div class="header">
 
@@ -78,7 +104,7 @@
                                                 <li class="last">
                                                     <a href="#"><img src="images/search_icon.png" alt="icon" /></a>
                                                 </li>
-                                                <li><a href="cart.jsp"><img src="images/cart.png" alt="icon" /></a></li>
+                                                <li><a href="showCart"><img src="images/cart.png" alt="icon" /></a></li>
                                                 <li><a href="profile.jsp"><img src="images/profile.png"
                                                             alt="icon" /></a></li>
                                                 <%-- check the value of the 'LoggedIn' attribute --%>
@@ -86,14 +112,14 @@
                                                         <%-- if the attribute is 'true' , show the 'Welcome' message
                                                             --%>
                                                             <c:when test="${sessionScope.LoggedIn == true}">
-                                                                <li> <button id="logout" class="send"><img
+                                                                <li> <button id="logout" onclick="Logout(event)" class="send"><img
                                                                             src="images/logout.png"
                                                                             alt="icon" />Logout</button></li>
                                                             </c:when>
                                                             <%-- if the attribute is 'false' or not set, show
                                                                 the 'Please log in' message --%>
                                                                 <c:otherwise>
-                                                                    <li> <button id="login" class="send"><img
+                                                                    <li> <button id="login" onclick="window.location.href='login.jsp'" class="send"><img
                                                                                 src="images/login.png"
                                                                                 alt="icon" />Login</button></li>
                                                                 </c:otherwise>
@@ -137,6 +163,7 @@
                         <button class="filter-button send" data-filter="mobile phones">Mobile Phones</button>
                         <button class="filter-button send" data-filter="headphones">Headphones</button>
                         <button class="filter-button send" data-filter="smart watches">Smart Watches</button>
+                        <hr style="border: 1px solid red;">
                     </div>
                 </div>
                 <div></div>
@@ -291,11 +318,9 @@
                                     <div class="menu-bottom">
                                         <ul class="link">
                                             <li> <a href="home">Home</a></li>
-                                            <li> <a href="#">About</a></li>
-
-                                            <li> <a href="#">Brand </a></li>
-                                            <li> <a href="#">Specials </a></li>
-                                            <li> <a href="#"> Contact us</a></li>
+                                            <li> <a href="about.jsp">About</a></li>
+                                            <li> <a href="category.jsp">Category </a></li>
+                                            <li> <a href="special.jsp">Specials </a></li>
                                         </ul>
                                     </div>
                                 </div>

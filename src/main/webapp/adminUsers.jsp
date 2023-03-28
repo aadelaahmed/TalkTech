@@ -19,9 +19,34 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <!-- TABLE STYLES-->
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="css/popup.css">
+    
+<script>
+        function Logout(event) {
+            console.log('inside Logout');
+            event.preventDefault();   
+              $.ajax({
+                  url: "LogoutServlet",
+                  type: "POST",
+                  success: function(){
+                      var popup = document.getElementById("popup");
+                      popup.style.display = "block";
+                  }                                
+              });
+          
+        }</script>
 </head>
 
 <body>
+    <div class="popup_box" id="popup" style="display:none">
+        <i class="fas fa-exclamation"></i>
+        <h1>You Have Successfully Logged Out</h1>
+        <div class="btns">
+          <a href="home" class="btn1">Continue</a>
+        </div>
+      </div>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -36,7 +61,7 @@
             <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">Logout</a> </div>
+font-size: 16px;"> &nbsp; <button onclick="Logout(event)" class="btn btn-danger square-btn-adjust">Logout</button> </div>
         </nav>
         <!-- /. NAV TOP  -->
         <nav class="navbar-default navbar-side" role="navigation">
@@ -67,7 +92,7 @@ font-size: 16px;"> &nbsp; <a href="#" class="btn btn-danger square-btn-adjust">L
                 <div class="row">
                     <div class="col-md-12">
                         <h2>View Users</h2>
-                        <h5>Welcome Jhon Deo , Love to see you back. </h5>
+                        <h5>Welcome ${sessionScope.userName} , Love to see you back. </h5>
 
                     </div>
                 </div>

@@ -24,6 +24,7 @@ public class Cart implements java.io.Serializable {
     private Integer cartId;
     private Integer userId;
     private BigDecimal totalPrice;
+    private Boolean isBought;
     private Set<CartItems> cartItems = new HashSet(0);
 
     public Cart() {
@@ -37,7 +38,6 @@ public class Cart implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-
     @Column(name = "CartID", unique = true, nullable = false)
     public Integer getCartId() {
         return this.cartId;
@@ -74,4 +74,12 @@ public class Cart implements java.io.Serializable {
         this.cartItems = cartItems;
     }
 
+    @Column(name = "isBought")
+    public Boolean getIsBought() {
+        return isBought;
+    }
+
+    public void setIsBought(Boolean isBought) {
+        this.isBought = isBought;
+    }
 }

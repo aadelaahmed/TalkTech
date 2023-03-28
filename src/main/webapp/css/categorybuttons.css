@@ -10,17 +10,20 @@
 } */
 
 .filter-button {
-  background-color: white;
+  background-color: #fafafa;
   border: 1px solid red; /* Set default border color to red */
-  color: red; /* Set default text color to red */
+  color: #c51a16; /* Set default text color to red */
   padding: 5px 10px;
   margin-right: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  display: inline-block;
 }
+
 
 .filter-button.active {
   background-color: red; /* Set background color to red when active */
   color: white; /* Set text color to white when active */
   border-color: red; /* Set border color to red when active */
 }
+

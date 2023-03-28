@@ -20,6 +20,10 @@
         <servlet-name>SignUpServlet</servlet-name>
         <servlet-class>org.controller.SignUpServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>org.controller.LogoutServlet</servlet-class>
+    </servlet>
     <filter>
         <filter-name>AuthenticationFilter</filter-name>
         <filter-class>org.controller.AuthenticationFilter</filter-class>
@@ -30,6 +34,7 @@
         <url-pattern>/EditProfileServlet</url-pattern>
         <url-pattern>/editprofile.jsp</url-pattern>
         <url-pattern>/profile.jsp</url-pattern>
+
         <!-- Add more URL patterns as needed -->
     </filter-mapping>
 
@@ -37,13 +42,29 @@
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>org.controller.CartServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
-        <url-pattern>/cart</url-pattern>
+        <url-pattern>/showCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/updateInCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/removeFromCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/addToCart</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>CategoryServlet</servlet-name>
@@ -135,7 +156,7 @@
         <url-pattern>/productdetails</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>SignUp.jsp</welcome-file>
+        <welcome-file>home</welcome-file>
     </welcome-file-list>
 
 

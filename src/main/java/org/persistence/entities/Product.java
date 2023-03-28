@@ -2,6 +2,7 @@ package org.persistence.entities;// default package
 
 // Generated Mar 14, 2023, 1:07:33 AM by Hibernate Tools 6.1.7.Final
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -21,6 +22,7 @@ import java.util.Set;
 @Table(name="product"
     ,catalog="talktech"
 )
+@JsonIgnoreProperties("cartItems")
 public class Product  implements java.io.Serializable {
      private Integer productId;
      private String name;
