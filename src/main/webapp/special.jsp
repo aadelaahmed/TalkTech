@@ -144,7 +144,7 @@
                            <p>It is a long established fact that a reader will be distracted by the readable content
                               <br> of a page when looking at its layout. The point of using Lorem Ipsum is that
                            </p>
-                           <a class="buynow" href="#">Buy Now</a>
+                           <a class="category.jsp" href="#">Buy Now</a>
 
                         </div>
                      </div>
@@ -158,7 +158,7 @@
                            <p>It is a long established fact that a reader will be distracted by the readable content
                               <br> of a page when looking at its layout. The point of using Lorem Ipsum is that
                            </p>
-                           <a class="buynow" href="#">Buy Now</a>
+                           <a class="buynow" href="category.jsp">Buy Now</a>
 
                         </div>
                      </div>

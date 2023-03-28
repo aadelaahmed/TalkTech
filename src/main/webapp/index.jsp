@@ -179,7 +179,7 @@
                                         <br> of a page when looking at its layout. The point of using Lorem Ipsum is
                                         that
                                     </p>
-                                    <a class="buynow" href="#">Buy Now</a>
+                                    <a class="buynow" href="category.jsp">Buy Now</a>
                                     <ul class="social_icon">
                                         <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
                                         <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -199,7 +199,7 @@
                                         <br> of a page when looking at its layout. The point of using Lorem Ipsum is
                                         that
                                     </p>
-                                    <a class="buynow" href="#">Buy Now</a>
+                                    <a class="buynow" href="category.jsp">Buy Now</a>
                                     <ul class="social_icon">
                                         <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
                                         <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
