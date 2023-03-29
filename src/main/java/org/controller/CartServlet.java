@@ -30,27 +30,29 @@ public class CartServlet extends HttpServlet {
         }else if (mappingUrl.equals("/"+Constants.UPDATE_CART_URL_MAPPING)){
             updateProductInCart(req);
         }else if (mappingUrl.equals("/"+Constants.ADD_CART_URL_MAPPING)){
-            addProductToCart(req);
+            addProductToCart(req,resp);
         }
     }
 
 
 
-    private void addProductToCart(HttpServletRequest req) {
+    private void addProductToCart(HttpServletRequest req,HttpServletResponse resp) throws IOException {
         //TODO -> get email of user from session.
         System.out.println("start adding product to cart");
         int productId = Integer.parseInt(req.getParameter("productId"));
-        int cartId = cartService.getCartId(email);
-        Boolean isAdded = cartService.addProductToCart(cartId,productId);
-        if (isAdded){
-            //TODO -> we can send to the response ajax in product details that the adding process is successed
+        HttpSession session = req.getSession(false);
+        String looggedIn = (String) session.getAttribute(Constants.LOGGED_IN_SESSION_ATTR);
+        Integer cartId = (int) session.getAttribute(Constants.CART_ID_SESSION_ATTR);
+        cartService.addProductToCart(cartId,productId);
+        resp.sendRedirect("showCart");
+        /*if (looggedIn != null){
+            System.out.println("cart id in cart servlet is -> "+cartId);
         }
-        //resp.sendRedirect(Constants.SHOW_CART_URL_MAPPING);
         else
         {
-            //TODO -> error when add the product to cart, ex: the product deleted or is bought in stock.
-        }
-        System.out.println("check adding product -> "+isAdded);
+            System.out.println("user not login yet in add to cart servlet");
+            resp.sendRedirect("login.jsp");
+        }*/
     }
 
     private void updateProductInCart(HttpServletRequest req) {
@@ -59,7 +61,8 @@ public class CartServlet extends HttpServlet {
         int quantity = Integer.parseInt(req.getParameter("quantity"));
         int productId = Integer.parseInt(req.getParameter("productId"));
         //TODO -> get the cart id from session.
-        int cartId = cartService.getCartId(email);
+        HttpSession session = req.getSession(false);
+        int cartId = (int) session.getAttribute(Constants.CART_ID_SESSION_ATTR);
         Boolean isUpdated = cartService.updateProductInCart(cartId,productId,quantity);
         if (isUpdated == null || !isUpdated){
             //TODO -> show dialog this product was purchased.
@@ -73,7 +76,8 @@ public class CartServlet extends HttpServlet {
         PrintWriter printWriter = resp.getWriter();
         printWriter.write("success deleting message from servlet");
         //TODO -> get the cart id from session.
-        int cartId = cartService.getCartId(email);
+        HttpSession session = req.getSession(false);
+        int cartId = (int) session.getAttribute(Constants.CART_ID_SESSION_ATTR);
         int currentProductId = Integer.parseInt(req.getParameter("productId"));
         Boolean isDeleted = cartService.deleteProductFromCart(cartId,currentProductId);
         System.out.println("checking deletion of product -> "+isDeleted);
@@ -93,10 +97,9 @@ public class CartServlet extends HttpServlet {
         System.out.println(mappingUrl);
         if (mappingUrl.equals("/"+Constants.SHOW_CART_URL_MAPPING)){
             System.out.println("Cart get method in servlet");
+//            String email = (String) session.getAttribute(Constants.USER_EMAIL);
             HttpSession session = req.getSession(false);
-            //String email = (String) session.getAttribute(Constants.USER_EMAIL);
-            String email = Constants.USER_EMAIL;
-            int cartId = cartService.getCartId(email);
+            int cartId = (int) session.getAttribute(Constants.CART_ID_SESSION_ATTR);
             //TODO -> set cart id in session scope
             cartProducts = cartService.getAllCartProducts(cartId);
             for (ProductCartDto temp : cartProducts) {

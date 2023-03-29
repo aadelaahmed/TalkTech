@@ -9,6 +9,8 @@ import org.persistence.entities.User;
 
 import java.math.BigDecimal;
 
+import static org.persistence.Database.doInTransaction;
+
 public class CheckoutDao {
     CartDao cartDao;
     public CheckoutDao(){
@@ -20,7 +22,7 @@ public class CheckoutDao {
     }
 
     public BigDecimal getTotalPrice(int cartId){
-        return Database.doInTransaction(
+        return doInTransaction(
                 entityManager -> {
                     // Calculate the total price of the cart
                     CriteriaBuilder cb = entityManager.getCriteriaBuilder();
@@ -43,7 +45,7 @@ public class CheckoutDao {
     }
 
     public BigDecimal getCreditLimitForUser(String email) {
-        return Database.doInTransaction(
+        return doInTransaction(
                 entityManager -> {
                     CriteriaBuilder cb = entityManager.getCriteriaBuilder();
                     CriteriaQuery<BigDecimal> creditLimitQuery = cb.createQuery(BigDecimal.class);
@@ -53,6 +55,53 @@ public class CheckoutDao {
                     BigDecimal creditLimit = entityManager.createQuery(creditLimitQuery).getSingleResult();
                     System.out.println("Credit limit for user with email " + email + ": " + creditLimit);
                     return creditLimit;
+                }
+        );
+    }
+
+
+    public void updateProductQty(Integer productId, int newQuantity) {
+         Database.doInTransactionWithoutResult(
+                entityManager -> {
+                    CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+                    CriteriaUpdate<Product> update = cb.createCriteriaUpdate(Product.class);
+                    Root<Product> productRoot = update.from(Product.class);
+                    update.set(productRoot.get("quantity"), newQuantity);
+                    update.where(cb.equal(productRoot.get("productId"), productId));
+                    entityManager.createQuery(update).executeUpdate();
+                    System.out.println("product quantity is updated");
+                }
+        );
+    }
+
+    public void updateCartAsBought(int cartId, BigDecimal totalPrice) {
+        Database.doInTransactionWithoutResult(
+                entityManager -> {
+                    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+                    CriteriaUpdate<Cart> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(Cart.class);
+                    Root<Cart> cartRoot = criteriaUpdate.from(Cart.class);
+                    criteriaUpdate.set(cartRoot.get("isBought"), true);
+                    criteriaUpdate.set(cartRoot.get("totalPrice"), totalPrice);
+                    criteriaUpdate.where(criteriaBuilder.equal(cartRoot.get("cartId"), cartId));
+                    //int rowsUpdated = entityManager.createQuery(criteriaUpdate).executeUpdate();
+                    entityManager.createQuery(criteriaUpdate).executeUpdate();
+                    System.out.println("the cartId's isBought attribute is updated ,cartid-> "+cartId);
+
+                }
+        );
+    }
+
+    public void updateCreditLimit(String email,BigDecimal newCreditLimit) {
+        Database.doInTransactionWithoutResult(
+                entityManager -> {
+                    CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+                    CriteriaUpdate<User> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(User.class);
+                    Root<User> userRoot = criteriaUpdate.from(User.class);
+                    criteriaUpdate.set(userRoot.get("creditLimit"), newCreditLimit);
+                    criteriaUpdate.where(criteriaBuilder.equal(userRoot.get("email"), email));
+//                    int rowsUpdated = entityManager.createQuery(criteriaUpdate).executeUpdate();
+                    entityManager.createQuery(criteriaUpdate).executeUpdate();
+                    System.out.println("the credit limit of user with email -> "+email+" is updated");
                 }
         );
     }

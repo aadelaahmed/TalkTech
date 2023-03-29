@@ -1,15 +1,29 @@
 
 
-function checkQuantity(input) {
+function checkQuantity(input,productPrice) {
+  
   console.log("check quantity is fired");
-    var maxQuantity = Number(input.getAttribute("max") - 1);
+    var maxQuantity = Number(input.getAttribute("max"));
     var currentQuantity = Number(input.value);
     var errorSpan = document.getElementById("quantity-error-" + input.id);
     var currentProductId = input.id;
     console.log("max Quantity -> "+maxQuantity);
     if (currentQuantity > maxQuantity) {
       errorSpan.textContent = "Quantity cannot exceed " + maxQuantity;
-    } else {
+    }
+    else if(currentQuantity === 0)
+      errorSpan.textContent = "The Quantity can't be zero";
+    else {
+      var currentValue = parseInt(input.value);
+      var previousValue = parseInt(input.getAttribute('value'));
+      var difference = currentValue - previousValue;
+      console.log("print the passed productPrice -> "+productPrice);
+      var newProductPrice = difference * Number(productPrice);
+      console.log("type of newproductprice ->"+typeof newProductPrice);
+      // Update the value attribute to the new value
+      input.setAttribute('value', currentValue);
+      console.log("test the difference price -> "+newProductPrice);
+      increaseTotalPriceUI(newProductPrice);
       updateProductQuantity(currentProductId,currentQuantity);
       errorSpan.textContent = "";
     }
@@ -54,13 +68,51 @@ function updateProductQuantity(currentProductId,currentQuantity){
   }
   xhr.send(params);
 }
+function increaseTotalPriceUI(productPrice){
+  console.log("check new product price type ->"+typeof productPrice);
+  var totalPriceEles = document.querySelectorAll(".total-price-summary");
+for (var i = 0; i < totalPriceEles.length; i++) {
+  var totalPriceEle = totalPriceEles[i];
+  console.log("value of totalPriceEle -->"+totalPriceEle.textContent);
+  var totalPrice = Number(totalPriceEle.textContent.split(" ")[0]);
+  var newTotalPrice = totalPrice + Number(productPrice);
+  console.log("typeof newTotalPrice -->"+typeof newTotalPrice);
+  console.log("newTotalPrice -->"+ newTotalPrice);
+  totalPriceEle.textContent = newTotalPrice + " E£";
+}
+}
 
-function removeProduct(button,event){
+function decreaseTotalPriceUI(productPrice){
+var totalPriceEles = document.querySelectorAll(".total-price-summary");
+for (var i = 0; i < totalPriceEles.length; i++) {
+  var totalPriceEle = totalPriceEles[i];
+  console.log("value of totalPriceEle -->"+totalPriceEle.textContent);
+  var totalPrice = Number(totalPriceEle.textContent.split(" ")[0]);
+  var newTotalPrice = totalPrice - Number(productPrice);
+  console.log("typeof newTotalPrice -->"+typeof newTotalPrice);
+  console.log("newTotalPrice -->"+ newTotalPrice);
+  totalPriceEle.textContent = newTotalPrice + " E£";
+}
+}
+function decreaseProductsCount(){
+  var countProdcutsEles = document.querySelectorAll(".count-products");
+for (var i = 0; i < countProdcutsEles.length; i++) {
+  var countProdEle = countProdcutsEles[i];
+  console.log("value of countProdEle -->"+countProdEle.textContent);
+  var countProd = Number(countProdEle.textContent.split(" ")[1]);
+  var newCountProducts = countProd - 1;
+  console.log("typeof newCountProducts -->"+typeof newCountProducts);
+  console.log("newCountProducts -->"+ newCountProducts);
+  countProdEle.textContent = newCountProducts + " ITEMS";
+}
+}
+function removeProduct(button,event,productPrice){
       var xhr = new XMLHttpRequest();
-      //var ele = document.getElementsByClassName(""); 
-      var productId  = button.getAttribute('data-product');
-      console.log(typeof productId);
-      console.log("test test ->"+productId);
+      console.log(typeof productPrice);
+      console.log("productPrice when deleting -> "+productPrice);
+      var productId = button.getAttribute('data-product');
+      decreaseTotalPriceUI(productPrice);
+      decreaseProductsCount();
       const container = event.target.closest('.product-container');
       container.remove();
       var url = 'removeFromCart';

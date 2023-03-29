@@ -80,9 +80,9 @@ String cartProductsJson = gson.toJson(cartProducts);
     <!-- body -->
 
     <body class="main-layout">
-      <div>
+      <!-- <div>
         <%= cartProductsJson %>
-      </div>
+      </div> -->
       <c:set var="totalPrice" value="0" />
       <!-- loader  -->
       <div class="loader_bg">
@@ -189,7 +189,7 @@ String cartProductsJson = gson.toJson(cartProducts);
                             <div class="p-5">
                               <div class="d-flex justify-content-between align-items-center mb-5">
                                 <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                                <h6 class="mb-0 text-muted"><c:out value="${fn:length(cartProducts)}" /> Items</h6>
+                                <h6 class="count-products mb-0 text-muted">Items <c:out value="${fn:length(cartProducts)}" /></h6>
 
                               </div>
                               <hr class="my-4">
@@ -207,16 +207,16 @@ String cartProductsJson = gson.toJson(cartProducts);
                                     <button class="btn btn-link px-2"
                                       onclick="const downInputField = this.parentNode.querySelector('input[type=number]');
                                       downInputField.stepDown();
-                                      checkQuantity(downInputField);">
+                                      checkQuantity(downInputField,`${product.price}`);">
                                       <i class="fas fa-minus"></i>
                                     </button>
 
-                                    <input name="quantity" value="${product.qtyInCart}" id="${product.productId}" type="number" min="1" max="${product.qtyInStock}" style="width: 70px;" onblur="checkQuantity(this,`${product}`)"  >
+                                    <input name="quantity" value="${product.qtyInCart}" id="${product.productId}" type="number" min="1" max="${product.qtyInStock}" style="width: 70px;" onblur="checkQuantity(this,`${product.price}`)"  >
 
                                     <button class="btn btn-link px-2"
                                       onclick="const upInputField = this.parentNode.querySelector('input[type=number]');
                                       upInputField.stepUp();
-                                      checkQuantity(upInputField);">
+                                      checkQuantity(upInputField,`${product.price}`);">
                                       <i class="fas fa-plus"></i>
                                     </button>
                                     <span style="color: #c41a17;" class="text-danger" id="quantity-error-${product.productId}">
@@ -228,7 +228,7 @@ String cartProductsJson = gson.toJson(cartProducts);
                                   <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                     <h6 class="mb-0">€${product.price}</h6>
                                   </div>
-                                  <div onclick="removeProduct(this,event)" data-product="${product.productId}"  class="remove-product col-md-1 col-lg-1 col-xl-1 text-end">
+                                  <div onclick="removeProduct(this,event,`${product.price}`)" data-product="${product.productId}"  class="remove-product col-md-1 col-lg-1 col-xl-1 text-end">
                                     <a style="cursor: pointer;"  class="text-muted"><i class="fas fa-times"></i></a>
                                   </div>
                                 </div>
@@ -251,18 +251,18 @@ String cartProductsJson = gson.toJson(cartProducts);
                               <hr class="my-4">
 
                               <div class="d-flex justify-content-between mb-4">
-                                <h5 class="text-uppercase">Items <c:out value="${fn:length(cartProducts)}" /> </h5>
+                                <h5 class="count-products text-uppercase">Items <c:out value="${fn:length(cartProducts)}" /> </h5>
                                 <c:forEach items="${cartProducts}" var="item">
                                   <c:set var="totalPrice" value="${totalPrice + item.price}" />
                               </c:forEach>
-                                <h5>${totalPrice} egy</h5>
+                                <h5 class="total-price-summary" >${totalPrice} E£</h5>
                               </div>
 
                               <hr class="my-4">
 
                               <div class="d-flex justify-content-between mb-5">
                                 <h5 class="text-uppercase">Total price</h5>
-                                <h5>${totalPrice} egy</h5>
+                                <h5 class="total-price-summary">${totalPrice} E£</h5>
                               </div>
                               <c:set var="allProductsValid" value="true" />
                               <c:forEach var="checkProduct" items="${cartProducts}">

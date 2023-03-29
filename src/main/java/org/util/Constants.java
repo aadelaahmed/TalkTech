@@ -24,4 +24,9 @@ public class Constants {
     public static final String DELETE_CART_URL_MAPPING= "removeFromCart";
     public static final String ADD_CART_URL_MAPPING= "addToCart";
     public static final String CHECKOUT_URL_MAPPING = "checkout";
+    public static final String CART_ID_SESSION_ATTR= "CART_ID";
+    public static final String EMAIL_SESSION_ATTR= "email";
+    public static final String USER_NAME_SESSION_ATTR= "userName";
+    public static final String LOGGED_IN_SESSION_ATTR= "LoggedIn";
+    public static final String USERT_TYPE_SESSION_ATTR= "userType";
 }

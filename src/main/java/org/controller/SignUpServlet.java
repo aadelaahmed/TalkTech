@@ -8,9 +8,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.persistence.entities.User;
+import org.service.CartService;
 import org.service.UserService;
+import org.util.Constants;
 
 import java.io.IOException;
+import java.lang.constant.Constable;
 import java.util.Map;
 
 public class SignUpServlet extends HttpServlet {
@@ -31,7 +34,7 @@ public class SignUpServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         session.setAttribute("email", email);
         session.setAttribute("LoggedIn", "true");
-
+        setCartIdIntoSession(session,email);
         // Convert the JSON data to a Map using Gson
         Gson gson = new Gson();
         User user = gson.fromJson(body, User.class);
@@ -44,6 +47,12 @@ public class SignUpServlet extends HttpServlet {
         request.getRequestDispatcher("home").forward(request,resp);
 
 
+    }
+
+    private void setCartIdIntoSession(HttpSession session,String email) {
+        CartService cartService = new CartService();
+        int cartId = cartService.getCartId(email);
+        session.setAttribute(Constants.CART_ID_SESSION_ATTR,cartId);
     }
 
 
