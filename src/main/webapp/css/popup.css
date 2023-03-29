@@ -6,7 +6,7 @@
 }
 #popup{
   font-family: 'Noto Sans TC', sans-serif;
-  height: 42vh;
+  height: 51vh;
   background: linear-gradient(75deg,#000000,#961111);
 }
 .click, .popup_box{
