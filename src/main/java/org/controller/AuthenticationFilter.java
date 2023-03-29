@@ -30,7 +30,7 @@ public class AuthenticationFilter implements Filter {
             }
             else{
                 if(isLoggedIn.equals("true")){
-                    if(userType.trim().equals("admin")){
+                    if(userType!=null && userType.trim().equals("admin")){
                         HttpServletResponse httpResponse = (HttpServletResponse) response;
                         httpResponse.sendRedirect(httpRequest.getContextPath() + "/admin.jsp");
                     }

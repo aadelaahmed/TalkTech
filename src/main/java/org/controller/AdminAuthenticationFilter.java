@@ -30,7 +30,7 @@ public class AdminAuthenticationFilter implements Filter {
             }
             else{
                 if(isLoggedIn.equals("true")){
-                    if(userType.trim().equals("Customer")){
+                    if(userType!=null && userType.trim().equals("Customer")){
                         HttpServletResponse httpResponse = (HttpServletResponse) response;
                         httpResponse.sendRedirect(httpRequest.getContextPath() + "home");
                     }
