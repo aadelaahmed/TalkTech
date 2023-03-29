@@ -80,7 +80,7 @@ font-size: 16px;">&nbsp; <button onclick="Logout(event)" class="btn btn-danger s
                                 <img src="assets/img/find_user.png" class="user-image img-responsive" />
                             </li>
                             <li>
-                                <a href="adminUsers.jsp"><i class="fa fa-table fa-3x"></i>View Users</a>
+                                <a href="AdminUsersServlet"><i class="fa fa-table fa-3x"></i>View Users</a>
                             </li>
                             <li>
                                 <a href="AdminProductsServlet"><i class="fa fa-table fa-3x"></i>View Products</a>
