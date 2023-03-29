@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -69,7 +71,7 @@ font-size: 16px;"> &nbsp; <button onclick="Logout(event)" class="btn btn-danger 
                         <img src="assets/img/find_user.png" class="user-image img-responsive" />
                     </li>
                     <li>
-                        <a href="adminUsers.jsp"><i class="fa fa-table fa-3x"></i>View Users</a>
+                        <a href="AdminUsersServlet"><i class="fa fa-table fa-3x"></i>View Users</a>
                     </li>
                     <li>
                         <a href="AdminProductsServlet"><i class="fa fa-table fa-3x"></i>View Products</a>
@@ -113,7 +115,6 @@ font-size: 16px;"> &nbsp; <button onclick="Logout(event)" class="btn btn-danger 
                                             <th>#</th>
                                             <th>Name</th>
                                             <th>Email</th>
-                                            <th>Password</th>
                                             <th>Job</th>
                                             <th>CreditLimit</th>
                                             <th>Address</th>
@@ -123,28 +124,18 @@ font-size: 16px;"> &nbsp; <button onclick="Logout(event)" class="btn btn-danger 
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="user" items="${dataList}">
                                         <tr>
-                                            <td>1</td>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                              <td>${user.userId}</td>
+                                              <td>${user.name}</td>
+                                              <td>${user.email}</td>
+                                              <td>${user.job}</td>
+                                              <td>${user.creditLimit}</td>
+                                              <td>${user.address}</td>
+                                              <td>${user.interests}</td>
+                                              <td>${user.userType}</td>
                                         </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
