@@ -51,6 +51,7 @@
                         emailValidate.style.color = 'red';
                         emailValidate.style.fontWeight = 'bold';
                         emailValidate.innerHTML = xmlvalue;
+                        document.getElementById("password").value="";
                     }
                     else if (xmlvalue.trim() === 'admin') {
                         console.log(xmlvalue);
@@ -113,7 +114,7 @@
                                     <ul class="menu-area-main">
                                         <li class="active"> <a href="home">Home</a> </li>
                                         <li> <a href="about.jsp">About</a> </li>
-                                        <li><a href="brand.jsp">Category</a></li>
+                                        <li><a href="category.jsp">Category</a></li>
                                         <li><a href="special.jsp">Specials</a></li>
                                         <li class="last">
                                             <a href="#"><img src="images/search_icon.png" alt="icon" /></a>

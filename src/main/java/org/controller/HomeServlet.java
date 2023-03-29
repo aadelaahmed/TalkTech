@@ -20,7 +20,7 @@ public class HomeServlet extends HttpServlet {
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         if(session!=null) {
             String userType = (String) session.getAttribute("userType");
-            if (userType.trim().equals("admin")) {
+            if (userType!=null && userType.trim().equals("admin")) {
                 HttpServletResponse httpResponse = (HttpServletResponse) resp;
                 httpResponse.sendRedirect(httpRequest.getContextPath() + "/admin.jsp");
             }
