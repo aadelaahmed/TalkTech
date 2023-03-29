@@ -31,6 +31,9 @@ public class EditProductServlet extends HttpServlet {
         Gson gson = new Gson();
         Product product = gson.fromJson(body, Product.class);
         System.out.println("product"+product.toString());
+        product.setBrand(product.getBrand().toLowerCase());
+        product.setCategory(product.getCategory().toLowerCase());
+
         ProductService service = new ProductService();
         service.updateProduct(product);
 
