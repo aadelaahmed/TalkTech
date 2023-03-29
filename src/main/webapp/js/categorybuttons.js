@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           }else
             {
               console.log(xhr.responseText);
-              onsole.log("can't load the initial state in js");
+              console.log("can't load the initial state in js");
             }
         }
         filterButtons.forEach(button => {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           <div style="cursor: pointer;" onclick="onProductItemClicked(${product.productId})" class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
             <div class="card">
               <div class="imgBox">
-                <img src="images/1.png" alt="mouse corsair" class="mouse">
+              <img src="../../images/${product.imageUrl}" alt="${product.name}" class="mouse">
               </div>
               <div class="contentBox">
                 <h3>${product.name}</h3>

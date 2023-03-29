@@ -24,6 +24,7 @@ public class ProductDetailsServlet extends HttpServlet {
         ProductDto productDto = new ProductDto(
                 product.getProductId(),
                 product.getName(),
+                product.getImageUrl(),
                 product.getDescription(),
                 product.getBrand(),
                 product.getPrice(),

@@ -32,7 +32,8 @@ public class AddProductServlet extends HttpServlet {
         Part filePart = request.getPart("file");
 
         InputStream fileContent = filePart.getInputStream();
-        String savePath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\images";
+        //String savePath = "C:\\Program Files\\Apache Software Foundation\\Tomcat 10.1\\webapps\\images";
+        String savePath = "C:\\apache-tomcat-10.1.5\\webapps\\images";
         String fileName = getFileName(filePart);
         OutputStream out = new FileOutputStream(new File(savePath + File.separator + fileName));
         byte[] buffer = new byte[1024];

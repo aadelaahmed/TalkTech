@@ -11,12 +11,14 @@ public class ProductDto {
     private Integer quantity;
     private String category;
     private String color;
+    private String imageUrl;
     public ProductDto(){
 
     }
 
-    public ProductDto(Integer productId, String name, String description, String brand, BigDecimal price, Integer quantity, String category, String color) {
+    public ProductDto(Integer productId, String name,String imageUrl, String description, String brand, BigDecimal price, Integer quantity, String category, String color) {
         this.productId = productId;
+        this.imageUrl = imageUrl;
         this.name = name;
         this.description = description;
         this.brand = brand;
@@ -24,6 +26,14 @@ public class ProductDto {
         this.quantity = quantity;
         this.category = category;
         this.color = color;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public Integer getProductId() {

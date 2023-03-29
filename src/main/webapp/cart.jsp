@@ -196,9 +196,8 @@ String cartProductsJson = gson.toJson(cartProducts);
                               <c:forEach var="product" items="${cartProducts}">
                                 <div id="container-cart-${product.productId}" class="product-container row mb-4 d-flex justify-content-between align-items-center">
                                   <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <img
-                                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
-                                      class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                   <img src="../../images/${product.imageUrl}" alt="${product.name}" class="mouse">
+
                                   </div>
                                   <div class="col-md-3 col-lg-3 col-xl-3">
                                     <h6 class="text-muted">${product.brand}</h6>

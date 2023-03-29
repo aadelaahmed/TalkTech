@@ -163,7 +163,7 @@
                 <div class="product__photo">
                     <div class="photo-container">
                         <div class="photo-main">
-                            <img src="images/1.png" alt="green apple slice">
+                            <img class ="image-product-details" src="../../images/${product.imageUrl}" alt="${product.name}" class="mouse">
                         </div>
                         <!-- <div class="photo-album">
                     <ul>
@@ -203,8 +203,8 @@
                 </ul> -->
                     </div>
                     <button id="cartbtn" onclick="onAddToCartClicked()" class="buy--btn">ADD TO CART</button>
-                    <label style="color: #4c4c4c; font-weight: bold;" for="quantity">Quantity:</label>
-                    <input type="number" id="quantity" name="quantity" min="1" max="${productBean.quantity}" required>
+                    <!-- <label style="color: #4c4c4c; font-weight: bold;" for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="${productBean.quantity}" required> -->
                 </div>
             </section>
             <!-- end product -->

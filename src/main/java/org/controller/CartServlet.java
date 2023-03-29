@@ -100,7 +100,7 @@ public class CartServlet extends HttpServlet {
             //TODO -> set cart id in session scope
             cartProducts = cartService.getAllCartProducts(cartId);
             for (ProductCartDto temp : cartProducts) {
-                temp.setImageUrl("");
+                //temp.setImageUrl("");
                 System.out.println("Cart Servlet -> "+temp.toString());
             }
 //        Gson gson = new Gson();
