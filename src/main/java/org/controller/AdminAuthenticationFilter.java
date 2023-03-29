@@ -32,7 +32,7 @@ public class AdminAuthenticationFilter implements Filter {
                 if(isLoggedIn.equals("true")){
                     if(userType.trim().equals("Customer")){
                         HttpServletResponse httpResponse = (HttpServletResponse) response;
-                        httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp");
+                        httpResponse.sendRedirect(httpRequest.getContextPath() + "home");
                     }
                     else {
                         // User is logged in, continue processing the request
