@@ -1,23 +1,57 @@
 
 
-function checkQuantity(input) {
+function checkQuantity(input,productPrice) {
+  
   console.log("check quantity is fired");
     var maxQuantity = Number(input.getAttribute("max"));
     var currentQuantity = Number(input.value);
     var errorSpan = document.getElementById("quantity-error-" + input.id);
     var currentProductId = input.id;
-    errorSpan.innerText = "hello world";
-    // console.log("product id ->"+input.id);
-    // console.log("currentQuantity ->"+currentQuantity);
-    // console.log("maxQuantity ->"+maxQuantity);
+    console.log("max Quantity -> "+maxQuantity);
     if (currentQuantity > maxQuantity) {
-      // console.log("Quantity cannot exceed " + maxQuantity)
       errorSpan.textContent = "Quantity cannot exceed " + maxQuantity;
-    } else {
-      //console.log("allowable")
+    }
+    else if(currentQuantity === 0)
+      errorSpan.textContent = "The Quantity can't be zero";
+    else {
+      var currentValue = parseInt(input.value);
+      var previousValue = parseInt(input.getAttribute('value'));
+      var difference = currentValue - previousValue;
+      console.log("print the passed productPrice -> "+productPrice);
+      var newProductPrice = difference * Number(productPrice);
+      console.log("type of newproductprice ->"+typeof newProductPrice);
+      // Update the value attribute to the new value
+      input.setAttribute('value', currentValue);
+      console.log("test the difference price -> "+newProductPrice);
+      increaseTotalPriceUI(newProductPrice);
       updateProductQuantity(currentProductId,currentQuantity);
       errorSpan.textContent = "";
     }
+}
+
+function checkout(allProductsValid){
+  console.log("check on the validation products ->"+allProductsValid);
+  // allProducts.forEach(prod => {
+  //   console.log("prod qty in cart test -> "+prod.qtyInCart);
+  // });
+  if(allProductsValid){
+    console.log("checkout fired");
+    var xhr = new XMLHttpRequest();
+    var url = 'checkout';
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log("respone sucess from updating cart item -> "+ xhr.responseText);
+        // handle response here
+      }
+    }
+    xhr.send();
+  }else
+  {
+    console.log("the quantity is not valid in some product");
+  }
+  
 }
 
 function updateProductQuantity(currentProductId,currentQuantity){
@@ -28,19 +62,57 @@ function updateProductQuantity(currentProductId,currentQuantity){
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
-      console.log("respone sucess from updating cart item -> "+ xhr.responseText);
+      console.log("respone sucess from checkout cart -> "+ xhr.responseText);
       // handle response here
     }
   }
   xhr.send(params);
 }
+function increaseTotalPriceUI(productPrice){
+  console.log("check new product price type ->"+typeof productPrice);
+  var totalPriceEles = document.querySelectorAll(".total-price-summary");
+for (var i = 0; i < totalPriceEles.length; i++) {
+  var totalPriceEle = totalPriceEles[i];
+  console.log("value of totalPriceEle -->"+totalPriceEle.textContent);
+  var totalPrice = Number(totalPriceEle.textContent.split(" ")[0]);
+  var newTotalPrice = totalPrice + Number(productPrice);
+  console.log("typeof newTotalPrice -->"+typeof newTotalPrice);
+  console.log("newTotalPrice -->"+ newTotalPrice);
+  totalPriceEle.textContent = newTotalPrice + " E£";
+}
+}
 
-function removeProduct(button,event){
+function decreaseTotalPriceUI(productPrice){
+var totalPriceEles = document.querySelectorAll(".total-price-summary");
+for (var i = 0; i < totalPriceEles.length; i++) {
+  var totalPriceEle = totalPriceEles[i];
+  console.log("value of totalPriceEle -->"+totalPriceEle.textContent);
+  var totalPrice = Number(totalPriceEle.textContent.split(" ")[0]);
+  var newTotalPrice = totalPrice - Number(productPrice);
+  console.log("typeof newTotalPrice -->"+typeof newTotalPrice);
+  console.log("newTotalPrice -->"+ newTotalPrice);
+  totalPriceEle.textContent = newTotalPrice + " E£";
+}
+}
+function decreaseProductsCount(){
+  var countProdcutsEles = document.querySelectorAll(".count-products");
+for (var i = 0; i < countProdcutsEles.length; i++) {
+  var countProdEle = countProdcutsEles[i];
+  console.log("value of countProdEle -->"+countProdEle.textContent);
+  var countProd = Number(countProdEle.textContent.split(" ")[1]);
+  var newCountProducts = countProd - 1;
+  console.log("typeof newCountProducts -->"+typeof newCountProducts);
+  console.log("newCountProducts -->"+ newCountProducts);
+  countProdEle.textContent = newCountProducts + " ITEMS";
+}
+}
+function removeProduct(button,event,productPrice){
       var xhr = new XMLHttpRequest();
-      //var ele = document.getElementsByClassName(""); 
-      var productId  = button.getAttribute('data-product');
-      console.log(typeof productId);
-      console.log("test test ->"+productId);
+      console.log(typeof productPrice);
+      console.log("productPrice when deleting -> "+productPrice);
+      var productId = button.getAttribute('data-product');
+      decreaseTotalPriceUI(productPrice);
+      decreaseProductsCount();
       const container = event.target.closest('.product-container');
       container.remove();
       var url = 'removeFromCart';

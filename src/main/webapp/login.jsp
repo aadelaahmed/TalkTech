@@ -102,7 +102,7 @@
                         <div class="full">
                             <div class="center-desk">
                                 <div class="logo">
-                                    <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
+                                    <a href="home"><img src="images/logo.png" alt="#"></a>
                                 </div>
                             </div>
                         </div>

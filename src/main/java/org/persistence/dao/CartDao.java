@@ -5,6 +5,7 @@ import org.dto.ProductCartDto;
 import org.persistence.Database;
 import org.persistence.entities.*;
 
+import java.math.BigDecimal;
 import java.util.*;
 public class CartDao{
 
@@ -31,7 +32,12 @@ public class CartDao{
                     subquery.select(userRoot.get("userId"))
                             .where(cb.equal(userRoot.get("email"), email));
                     cq.select(cart.get("cartId"))
-                            .where(cb.equal(cart.get("userId"), subquery));
+                            .where(
+                                    cb.and(
+                                            cb.equal(cart.get("userId"), subquery),
+                                            cb.notEqual(cart.get("isBought"), true)
+                                    )
+                            );
                     List<Integer> cartIds = entityManager.createQuery(cq).getResultList();
                     if (cartIds.isEmpty()) {
                         System.out.println("No cart found for the given email address.");
@@ -41,6 +47,7 @@ public class CartDao{
                         Cart newCart = new Cart();
                         newCart.setUserId(user.getUserId());
                         newCart.setIsBought(false);
+                        newCart.setTotalPrice(BigDecimal.valueOf(0));
                         entityManager.persist(newCart);
                         entityManager.flush();
                         System.out.println("New cart created with ID: " + newCart.getCartId());
@@ -67,7 +74,12 @@ public class CartDao{
                             cartItems.get("quantity"),
                             product.get("quantity"),
                             product.get("price")));
-                    query.where(cb.equal(cartItems.get("cart").get("cartId"), cartId));
+                    query.where(
+                            cb.and(
+                                    cb.equal(cartItems.get("cart").get("cartId"), cartId),
+                                    cb.greaterThan(product.get("quantity"), 0)
+                            )
+                    );
                      List<ProductCartDto> results = entityManager.createQuery(query).getResultList();
                      return results;
                 }

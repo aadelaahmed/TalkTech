@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.json.JSONObject;
 import org.persistence.entities.User;
+import org.service.CartService;
 import org.service.UserService;
+import org.util.Constants;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,12 +36,14 @@ public class SignInServlet extends HttpServlet {
 
 
         if (user != null) {
-
+            CartService cartService = new CartService();
             HttpSession session = req.getSession(true);
             session.setAttribute("email", email);
             session.setAttribute("userName", user.getName());
             session.setAttribute("LoggedIn", "true");
             session.setAttribute("userType", user.getUserType());
+            int cartId = cartService.getCartId(email);
+            session.setAttribute(Constants.CART_ID_SESSION_ATTR,cartId);
             System.out.println("Logged in");
             System.out.println(user.getUserType());
             if (user.getUserType().trim().equals("admin")) {

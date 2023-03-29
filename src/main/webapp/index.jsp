@@ -87,7 +87,7 @@
                                 <div class="full">
                                     <div class="center-desk">
                                         <div class="logo">
-                                            <a href="index.jsp"><img src="images/logo.png" alt="#"></a>
+                                            <a href="home"><img src="images/logo.png" alt="#"></a>
                                         </div>
                                     </div>
                                 </div>
@@ -264,7 +264,7 @@
                                     class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
                                     <div class="card">
                                         <div class="imgBox">
-                                            <img src="images/1.png" alt="mouse corsair" class="mouse">
+                                            <img src="../../images/${product.imageUrl}" alt="${product.name}" class="mouse">
                                         </div>
                                         <div class="contentBox">
                                             <h3>${product.name}</h3>

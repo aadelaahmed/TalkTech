@@ -1,7 +1,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
   <%@ page contentType="text/html;charset=UTF-8" language="java" %>
   <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-    <!DOCTYPE html>
+  <%@ page import="com.google.gson.Gson" %>
+<%@ page import="java.util.List" %>
+<!-- Assuming the CartProduct class is located in the com.example package -->
+<%@ page import = "org.dto.ProductCartDto" %>
+  <%
+
+// Get the list of cart products from the request object
+List<ProductCartDto> cartProducts = (List<ProductCartDto>) request.getAttribute("cartProducts");
+
+// Convert the list to a JSON string using Gson
+Gson gson = new Gson();
+String cartProductsJson = gson.toJson(cartProducts);
+%>  
+  <!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -49,7 +62,6 @@
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       <link rel="stylesheet" href="css/popup.css">
-
   <script>
           function Logout(event) {
               console.log('inside Logout');
@@ -68,6 +80,9 @@
     <!-- body -->
 
     <body class="main-layout">
+      <!-- <div>
+        <%= cartProductsJson %>
+      </div> -->
       <c:set var="totalPrice" value="0" />
       <!-- loader  -->
       <div class="loader_bg">
@@ -174,16 +189,15 @@
                             <div class="p-5">
                               <div class="d-flex justify-content-between align-items-center mb-5">
                                 <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
-                                <h6 class="mb-0 text-muted"><c:out value="${fn:length(cartProducts)}" /> Items</h6>
+                                <h6 class="count-products mb-0 text-muted">Items <c:out value="${fn:length(cartProducts)}" /></h6>
 
                               </div>
                               <hr class="my-4">
                               <c:forEach var="product" items="${cartProducts}">
                                 <div id="container-cart-${product.productId}" class="product-container row mb-4 d-flex justify-content-between align-items-center">
                                   <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <img
-                                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
-                                      class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                   <img src="../../images/${product.imageUrl}" alt="${product.name}" class="mouse">
+
                                   </div>
                                   <div class="col-md-3 col-lg-3 col-xl-3">
                                     <h6 class="text-muted">${product.brand}</h6>
@@ -193,16 +207,16 @@
                                     <button class="btn btn-link px-2"
                                       onclick="const downInputField = this.parentNode.querySelector('input[type=number]');
                                       downInputField.stepDown();
-                                      checkQuantity(downInputField);">
+                                      checkQuantity(downInputField,`${product.price}`);">
                                       <i class="fas fa-minus"></i>
                                     </button>
 
-                                    <input name="quantity" value="${product.qtyInCart}" id="${product.productId}" type="number" min="1" max="${product.qtyInStock}" style="width: 70px;" onblur="checkQuantity(this)"  >
+                                    <input name="quantity" value="${product.qtyInCart}" id="${product.productId}" type="number" min="1" max="${product.qtyInStock}" style="width: 70px;" onblur="checkQuantity(this,`${product.price}`)"  >
 
                                     <button class="btn btn-link px-2"
                                       onclick="const upInputField = this.parentNode.querySelector('input[type=number]');
                                       upInputField.stepUp();
-                                      checkQuantity(upInputField);">
+                                      checkQuantity(upInputField,`${product.price}`);">
                                       <i class="fas fa-plus"></i>
                                     </button>
                                     <span style="color: #c41a17;" class="text-danger" id="quantity-error-${product.productId}">
@@ -214,7 +228,7 @@
                                   <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                                     <h6 class="mb-0">€${product.price}</h6>
                                   </div>
-                                  <div onclick="removeProduct(this,event)" data-product="${product.productId}"  class="remove-product col-md-1 col-lg-1 col-xl-1 text-end">
+                                  <div onclick="removeProduct(this,event,`${product.price}`)" data-product="${product.productId}"  class="remove-product col-md-1 col-lg-1 col-xl-1 text-end">
                                     <a style="cursor: pointer;"  class="text-muted"><i class="fas fa-times"></i></a>
                                   </div>
                                 </div>
@@ -222,102 +236,6 @@
 
                             </c:forEach>
 
-                              <!-- <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                  <img
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
-                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-3">
-                                  <h6 class="text-muted">Shirt</h6>
-                                  <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                  <button class="btn btn-link px-2"
-                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                  </button>
-
-                                  <input name="quantity" value="1" type="number" min="0" style="width: 70px;">
-
-                                  <button class="btn btn-link px-2"
-                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                  </button>
-                                </div>
-                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                  <h6 class="mb-0">€ 44.00</h6>
-                                </div>
-                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                  <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                                </div>
-                              </div>
-
-                              <hr class="my-4">
-
-                              <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                  <img
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img6.webp"
-                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-3">
-                                  <h6 class="text-muted">Shirt</h6>
-                                  <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                  <button class="btn btn-link px-2"
-                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                  </button>
-
-                                  <input name="quantity" value="1" type="number" min="0" style="width: 70px;">
-
-                                  <button class="btn btn-link px-2"
-                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                  </button>
-                                </div>
-                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                  <h6 class="mb-0">€ 44.00</h6>
-                                </div>
-                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                  <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                                </div>
-                              </div>
-
-                              <hr class="my-4">
-
-                              <div class="row mb-4 d-flex justify-content-between align-items-center">
-                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                  <img
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp"
-                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-3">
-                                  <h6 class="text-muted">Shirt</h6>
-                                  <h6 class="text-black mb-0">Cotton T-shirt</h6>
-                                </div>
-                                <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                                  <button class="btn btn-link px-2"
-                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                    <i class="fas fa-minus"></i>
-                                  </button>
-
-                                  <input name="quantity" value="1" type="number" min="0" style="width: 70px;">
-
-                                  <button class="btn btn-link px-2"
-                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                    <i class="fas fa-plus"></i>
-                                  </button>
-                                </div>
-                                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                  <h6 class="mb-0">€ 44.00</h6>
-                                </div>
-                                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                                  <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                                </div>
-                              </div> -->
 
                               <hr class="my-4">
 
@@ -333,23 +251,39 @@
                               <hr class="my-4">
 
                               <div class="d-flex justify-content-between mb-4">
-                                <h5 class="text-uppercase">Items <c:out value="${fn:length(cartProducts)}" /> </h5>
+                                <h5 class="count-products text-uppercase">Items <c:out value="${fn:length(cartProducts)}" /> </h5>
                                 <c:forEach items="${cartProducts}" var="item">
                                   <c:set var="totalPrice" value="${totalPrice + item.price}" />
                               </c:forEach>
-                                <h5>${totalPrice} egy</h5>
+                                <h5 class="total-price-summary" >${totalPrice} E£</h5>
                               </div>
 
                               <hr class="my-4">
 
                               <div class="d-flex justify-content-between mb-5">
                                 <h5 class="text-uppercase">Total price</h5>
-                                <h5>${totalPrice} egy</h5>
+                                <h5 class="total-price-summary">${totalPrice} E£</h5>
                               </div>
-
+                              <c:set var="allProductsValid" value="true" />
+                              <c:forEach var="checkProduct" items="${cartProducts}">
+                                <c:choose>
+                                  <c:when test="${checkProduct.qtyInCart >= checkProduct.qtyInStock}">
+                                    <!-- If quantity in cart is greater than or equal to quantity in stock, product is not valid -->
+                                    <c:set var="allProductsValid" value="false" />
+                                  </c:when>
+                                  <c:otherwise>
+                                    <c:set var="allProductsValid" value="true" />
+                                    <!-- If quantity in cart is less than quantity in stock, product is valid -->
+                                  </c:otherwise>
+                                </c:choose>
+                              </c:forEach>
+                              
                               <button type="button" class="btn btn-dark btn-block btn-lg"
-                                data-mdb-ripple-color="dark">Buy</button>
-
+                              data-mdb-ripple-color="dark" onclick="checkout(`${allProductsValid}`)">Checkout</button>
+                      
+                              
+                              <!-- <button type="button" class="btn btn-dark btn-block btn-lg"
+                                data-mdb-ripple-color="dark">Checkout</button> -->
                             </div>
                           </div>
                         </div>

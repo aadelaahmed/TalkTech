@@ -31,41 +31,24 @@ public class ProductDao {
                     CriteriaBuilder criteriaBuilder = paramEntityManager.getCriteriaBuilder();
                     CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
                     Root<Product> rootProduct = queryProduct.from(Product.class);
-                    queryProduct.select(rootProduct);
-                    Query limitQuery = paramEntityManager.createQuery(queryProduct);
+                    queryProduct.select(rootProduct).where(criteriaBuilder.greaterThan(rootProduct.get("quantity"), 0));                    Query limitQuery = paramEntityManager.createQuery(queryProduct);
                     limitQuery.setMaxResults(limit);
                     List<Product> products = limitQuery.getResultList();
                     return products;
                 });
-        /*
-         * EntityManager entityManager = JPAUtil.getEntityManager();
-         * entityManager.getTransaction().begin();
-         * CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-         * CriteriaQuery<Product> queryProduct =
-         * criteriaBuilder.createQuery(Product.class);
-         * Root<Product> rootProduct = queryProduct.from(Product.class);
-         * queryProduct.select(rootProduct);
-         * Query limitQuery = entityManager.createQuery(queryProduct);
-         * limitQuery.setMaxResults(limit);
-         * List<Product> products = limitQuery.getResultList();
-         * entityManager.getTransaction().commit();
-         * entityManager.close();
-         * return products;
-         */
     }
 
     public Product getProductById(int id) {
         return Database.doInTransaction(
                 paramEntityManager -> {
-                    /*
-                     * EntityManager entityManager = JPAUtil.getEntityManager();
-                     * entityManager.getTransaction().begin();
-                     */
                     CriteriaBuilder criteriaBuilder = paramEntityManager.getCriteriaBuilder();
                     CriteriaQuery<Product> queryProduct = criteriaBuilder.createQuery(Product.class);
                     Root<Product> rootProduct = queryProduct.from(Product.class);
                     queryProduct.select(rootProduct);
-                    Predicate condition = criteriaBuilder.equal(rootProduct.get("productId"), id);
+                    Predicate condition = criteriaBuilder.and(
+                            criteriaBuilder.equal(rootProduct.get("productId"), id),
+                            criteriaBuilder.greaterThan(rootProduct.get("quantity"), 0)
+                    );
                     queryProduct.where(condition);
                     Product resProduct = paramEntityManager.createQuery(queryProduct).getSingleResult();
                     return resProduct;
