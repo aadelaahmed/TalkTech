@@ -105,11 +105,6 @@ public class ProductDao {
 
     public void deleteProductById(Integer productId) {
         Database.doInTransactionWithoutResult(paramEntityManager -> {
-//            CriteriaBuilder builder = paramEntityManager.getCriteriaBuilder();
-//            CriteriaDelete<Product> delete = builder.createCriteriaDelete(Product.class);
-//            Root<Product> root = delete.from(Product.class);
-//            delete.where(builder.equal(root.get("productId"), productId));
-//            paramEntityManager.createQuery(delete).executeUpdate();
             Product product = paramEntityManager.find(Product.class, productId);
             if (product != null) {
                 // delete all related cart items

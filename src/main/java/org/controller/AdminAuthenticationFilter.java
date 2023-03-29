@@ -8,13 +8,13 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 
-public class AuthenticationFilter implements Filter {
+public class AdminAuthenticationFilter implements Filter {
 
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
-        System.out.println("Inside Customer Auth Filter");
+        System.out.println("Inside admin Auth Filter");
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpSession session = httpRequest.getSession(false); // Do not create a new session
         System.out.println("session: "+session);
@@ -25,14 +25,14 @@ public class AuthenticationFilter implements Filter {
             System.out.println("userType: "+ userType);
 
             if(isLoggedIn==null){
-                    HttpServletResponse httpResponse = (HttpServletResponse) response;
-                    httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
+                HttpServletResponse httpResponse = (HttpServletResponse) response;
+                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
             }
             else{
                 if(isLoggedIn.equals("true")){
-                    if(userType.trim().equals("admin")){
+                    if(userType.trim().equals("Customer")){
                         HttpServletResponse httpResponse = (HttpServletResponse) response;
-                        httpResponse.sendRedirect(httpRequest.getContextPath() + "/admin.jsp");
+                        httpResponse.sendRedirect(httpRequest.getContextPath() + "/index.jsp");
                     }
                     else {
                         // User is logged in, continue processing the request
@@ -47,12 +47,12 @@ public class AuthenticationFilter implements Filter {
 
         }
         else {
-                // User is not logged in, redirect to the login page or return HTTP unauthorized
-                // response code (401)
-                HttpServletResponse httpResponse = (HttpServletResponse) response;
-                httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
-                // Or: httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            }
+            // User is not logged in, redirect to the login page or return HTTP unauthorized
+            // response code (401)
+            HttpServletResponse httpResponse = (HttpServletResponse) response;
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login.jsp");
+            // Or: httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }
+}
 
