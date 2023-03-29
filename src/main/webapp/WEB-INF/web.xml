@@ -148,4 +148,13 @@
     </welcome-file-list>
 
 
+<!--    Checkout Servlet-->
+    <servlet>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <servlet-class>org.controller.CheckoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckoutServlet</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -23,4 +23,5 @@ public class Constants {
     public static final String UPDATE_CART_URL_MAPPING= "updateInCart";
     public static final String DELETE_CART_URL_MAPPING= "removeFromCart";
     public static final String ADD_CART_URL_MAPPING= "addToCart";
+    public static final String CHECKOUT_URL_MAPPING = "checkout";
 }

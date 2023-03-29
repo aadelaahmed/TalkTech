@@ -2,22 +2,42 @@
 
 function checkQuantity(input) {
   console.log("check quantity is fired");
-    var maxQuantity = Number(input.getAttribute("max"));
+    var maxQuantity = Number(input.getAttribute("max") - 1);
     var currentQuantity = Number(input.value);
     var errorSpan = document.getElementById("quantity-error-" + input.id);
     var currentProductId = input.id;
-    errorSpan.innerText = "hello world";
-    // console.log("product id ->"+input.id);
-    // console.log("currentQuantity ->"+currentQuantity);
-    // console.log("maxQuantity ->"+maxQuantity);
+    console.log("max Quantity -> "+maxQuantity);
     if (currentQuantity > maxQuantity) {
-      // console.log("Quantity cannot exceed " + maxQuantity)
       errorSpan.textContent = "Quantity cannot exceed " + maxQuantity;
     } else {
-      //console.log("allowable")
       updateProductQuantity(currentProductId,currentQuantity);
       errorSpan.textContent = "";
     }
+}
+
+function checkout(allProductsValid){
+  console.log("check on the validation products ->"+allProductsValid);
+  // allProducts.forEach(prod => {
+  //   console.log("prod qty in cart test -> "+prod.qtyInCart);
+  // });
+  if(allProductsValid){
+    console.log("checkout fired");
+    var xhr = new XMLHttpRequest();
+    var url = 'checkout';
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log("respone sucess from updating cart item -> "+ xhr.responseText);
+        // handle response here
+      }
+    }
+    xhr.send();
+  }else
+  {
+    console.log("the quantity is not valid in some product");
+  }
+  
 }
 
 function updateProductQuantity(currentProductId,currentQuantity){
@@ -28,7 +48,7 @@ function updateProductQuantity(currentProductId,currentQuantity){
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
-      console.log("respone sucess from updating cart item -> "+ xhr.responseText);
+      console.log("respone sucess from checkout cart -> "+ xhr.responseText);
       // handle response here
     }
   }

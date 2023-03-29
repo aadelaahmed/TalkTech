@@ -1,6 +1,5 @@
 package org.controller;
 
-import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -13,6 +12,7 @@ import org.util.Constants;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,48 +26,62 @@ public class CartServlet extends HttpServlet {
         PrintWriter printWriter;
         email = Constants.USER_EMAIL;
         if (mappingUrl.equals("/"+Constants.DELETE_CART_URL_MAPPING)){
-            System.out.println("Start deleting cart item in db");
-            printWriter = resp.getWriter();
-            printWriter.write("success deleting message from servlet");
-            //TODO -> get the cart id from session.
-            int cartId = cartService.getCartId(email);
-            int currentProductId = Integer.parseInt(req.getParameter("productId"));
-            Boolean isDeleted = cartService.deleteProductFromCart(cartId,currentProductId);
-            System.out.println("checking deletion of product -> "+isDeleted);
-            System.out.println("checking the cart product previously -> "+cartProducts);
-            if (isDeleted == null || !isDeleted){
-                //TODO -> show dialog this product was purchased.
-            }else{
-                //TODO -> deleted successfully,create new dto for updating price and total qty.
-            }
+            deleteProductFromCart(req,resp);
         }else if (mappingUrl.equals("/"+Constants.UPDATE_CART_URL_MAPPING)){
-            System.out.println("checking the cart product previously -> "+cartProducts);
-            System.out.println("start updating the quantity");
-            int quantity = Integer.parseInt(req.getParameter("quantity"));
-            int productId = Integer.parseInt(req.getParameter("productId"));
-            //TODO -> get the cart id from session.
-            int cartId = cartService.getCartId(email);
-            Boolean isUpdated = cartService.updateProductInCart(cartId,productId,quantity);
-            if (isUpdated == null || !isUpdated){
-                //TODO -> show dialog this product was purchased.
-            }else{
-                //TODO -> deleted successfully,create new dto for updating price and total qty.
-            }
+            updateProductInCart(req);
         }else if (mappingUrl.equals("/"+Constants.ADD_CART_URL_MAPPING)){
-            //TODO -> get email of user from session.
-            System.out.println("start adding product to cart");
-            int productId = Integer.parseInt(req.getParameter("productId"));
-            int cartId = cartService.getCartId(email);
-            Boolean isAdded = cartService.addProductToCart(cartId,productId);
-            if (isAdded){
-                //TODO -> we can send to the response ajax in product details that the adding process is successed
-            }
-                //resp.sendRedirect(Constants.SHOW_CART_URL_MAPPING);
-            else
-            {
-                //TODO -> error when add the product to cart, ex: the product deleted or is bought in stock.
-            }
-            System.out.println("check adding product -> "+isAdded);
+            addProductToCart(req);
+        }
+    }
+
+
+
+    private void addProductToCart(HttpServletRequest req) {
+        //TODO -> get email of user from session.
+        System.out.println("start adding product to cart");
+        int productId = Integer.parseInt(req.getParameter("productId"));
+        int cartId = cartService.getCartId(email);
+        Boolean isAdded = cartService.addProductToCart(cartId,productId);
+        if (isAdded){
+            //TODO -> we can send to the response ajax in product details that the adding process is successed
+        }
+        //resp.sendRedirect(Constants.SHOW_CART_URL_MAPPING);
+        else
+        {
+            //TODO -> error when add the product to cart, ex: the product deleted or is bought in stock.
+        }
+        System.out.println("check adding product -> "+isAdded);
+    }
+
+    private void updateProductInCart(HttpServletRequest req) {
+        System.out.println("checking the cart product previously -> "+cartProducts);
+        System.out.println("start updating the quantity");
+        int quantity = Integer.parseInt(req.getParameter("quantity"));
+        int productId = Integer.parseInt(req.getParameter("productId"));
+        //TODO -> get the cart id from session.
+        int cartId = cartService.getCartId(email);
+        Boolean isUpdated = cartService.updateProductInCart(cartId,productId,quantity);
+        if (isUpdated == null || !isUpdated){
+            //TODO -> show dialog this product was purchased.
+        }else{
+            //TODO -> deleted successfully,create new dto for updating price and total qty.
+        }
+    }
+
+    private void deleteProductFromCart(HttpServletRequest req,HttpServletResponse resp) throws IOException {
+        System.out.println("Start deleting cart item in db");
+        PrintWriter printWriter = resp.getWriter();
+        printWriter.write("success deleting message from servlet");
+        //TODO -> get the cart id from session.
+        int cartId = cartService.getCartId(email);
+        int currentProductId = Integer.parseInt(req.getParameter("productId"));
+        Boolean isDeleted = cartService.deleteProductFromCart(cartId,currentProductId);
+        System.out.println("checking deletion of product -> "+isDeleted);
+        System.out.println("checking the cart product previously -> "+cartProducts);
+        if (isDeleted == null || !isDeleted){
+            //TODO -> show dialog this product was purchased.
+        }else{
+            //TODO -> deleted successfully,create new dto for updating price and total qty.
         }
     }
 
