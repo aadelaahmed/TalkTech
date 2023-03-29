@@ -43,7 +43,7 @@ public class AddProductServlet extends HttpServlet {
         // A relative URL of the to be accessible in the application (fixing cannot access local resource)
         String filePath = "../../images" + "/" + fileName;
         ProductService productService = new ProductService();
-        Product product = new Product(name, description, brand, price, quantity, category, color, filePath);
+        Product product = new Product(name, description, brand.toLowerCase(), price, quantity, category.toLowerCase(), color, filePath);
         productService.save(product);
         System.out.println("File " + fileName + " has been uploaded to " + savePath);
 
