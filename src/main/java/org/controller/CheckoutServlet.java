@@ -31,11 +31,14 @@ public class CheckoutServlet extends HttpServlet {
         String email = (String) session.getAttribute(Constants.EMAIL_SESSION_ATTR);
         BigDecimal totalPrice = checkoutService.checkoutOrder(cartId);
         BigDecimal creditLimit = checkoutService.getCreditLimitForUser(email);
-        if (totalPrice == null)
-            return;
         System.out.println("Total Price in servlet ---> "+totalPrice);
         System.out.println("creditLimit in servlet ---> "+creditLimit);
         PrintWriter printWriter = response.getWriter();
+        if (totalPrice == null)
+        {
+            printWriter.write("Empty Cart");
+            return;
+        }
         if (creditLimit.compareTo(totalPrice) >= 0){
             List<ProductCartDto> cartProducts = checkoutService.getAllCartProducts(cartId);
             for (ProductCartDto product:cartProducts) {
