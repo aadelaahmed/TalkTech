@@ -34,13 +34,15 @@ public class SignUpServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         session.setAttribute("email", email);
         session.setAttribute("LoggedIn", "true");
-        setCartIdIntoSession(session,email);
+
         // Convert the JSON data to a Map using Gson
         Gson gson = new Gson();
         User user = gson.fromJson(body, User.class);
+        session.setAttribute("userType", user.getUserType());
         UserService service = new UserService();
         service.saveUser(user);
 
+        setCartIdIntoSession(session,email);
         // Use the data in the Map
         String username = user.getName();
         System.out.println("usernname "+ username+"credit "+user.getCreditLimit());
