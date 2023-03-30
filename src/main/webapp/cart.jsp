@@ -25,7 +25,7 @@ String cartProductsJson = gson.toJson(cartProducts);
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>pomato</title>
+      <title>Cart</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -190,7 +190,7 @@ String cartProductsJson = gson.toJson(cartProducts);
                               <div class="d-flex justify-content-between align-items-center mb-5">
                                 <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
                                 <h6 class="count-products mb-0 text-muted">Items <c:out value="${fn:length(cartProducts)}" /></h6>
-
+                                
                               </div>
                               <hr class="my-4">
                               <c:forEach var="product" items="${cartProducts}">
@@ -236,6 +236,20 @@ String cartProductsJson = gson.toJson(cartProducts);
 
                             </c:forEach>
 
+                            <div class="popup_box pop-up-success" id="popup" style="display:none">
+                              <i class="fas fa-exclamation"></i>
+                              <h1 id="pop-up-sucess-message">Your order is placed successfully</h1>
+                              <div class="btns">
+                                <a href="home" class="btn1">Continue</a>
+                              </div>
+                            </div>
+                            <div class="popup_box pop-up-error" id="popup" style="display:none">
+                              <i class="fas fa-exclamation"></i>
+                              <h1 id="pop-up-error-message"></h1>
+                              <div class="btns">
+                                <a href="showCart" class="btn1">Continue</a>
+                              </div>
+                            </div>
 
                               <hr class="my-4">
 
@@ -253,7 +267,7 @@ String cartProductsJson = gson.toJson(cartProducts);
                               <div class="d-flex justify-content-between mb-4">
                                 <h5 class="count-products text-uppercase">Items <c:out value="${fn:length(cartProducts)}" /> </h5>
                                 <c:forEach items="${cartProducts}" var="item">
-                                  <c:set var="totalPrice" value="${totalPrice + item.price}" />
+                                  <c:set var="totalPrice" value="${totalPrice + item.price * item.qtyInCart}" />
                               </c:forEach>
                                 <h5 class="total-price-summary" >${totalPrice} E£</h5>
                               </div>

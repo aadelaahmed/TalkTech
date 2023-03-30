@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
               </div>
               <div class="contentBox">
                 <h3>${product.name}</h3>
-                <h2 class="price">${product.price}.<small>EGY</small></h2>
+                <h2 class="price">${product.price}.<small>E£</small></h2>
                 <a onclick="onBuyNowClicked(event,${product.productId})" class="buy">Buy Now</a>
 
               </div>

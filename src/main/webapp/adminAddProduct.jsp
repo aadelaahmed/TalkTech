@@ -105,46 +105,46 @@ font-size: 16px;">&nbsp; <button onclick="Logout(event)" class="btn btn-danger s
                                         <form role="form" id="addForm" name="addForm" method="post" action="AddProductServlet" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label>Add Pic</label>
-                                                <input type="file" name="file"/>
+                                                <input type="file" name="file" required/>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Name</label>
 
-                                                <input type="text" class="form-control" id="productName" name="name">
+                                                <input type="text" class="form-control" id="productName" name="name" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Description</label>
 
                                                 <input type="text" class="form-control" id="productDescription"
-                                                    name="description">
+                                                    name="description" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Price</label>
 
                                                 <input type="number" class="form-control" id="productPrice"
-                                                    name="price">
+                                                    name="price" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Quantity</label>
 
                                                 <input type="number" class="form-control" id="productQuantity"
-                                                    name="quantity">
+                                                    name="quantity" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Category</label>
 
-                                                <input type="text" class="form-control" name="category">
+                                                <input type="text" class="form-control" name="category" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Brand</label>
 
-                                                <input type="text" class="form-control" id="productBrand" name="brand">
+                                                <input type="text" class="form-control" id="productBrand" name="brand" required>
                                             </div>
                                             <div class="form-group">
                                                 <label>Color</label>
 
-                                                <input type="text" class="form-control" id="productColor" name="color">
+                                                <input type="text" class="form-control" id="productColor" name="color" required>
                                             </div>
 
                                             <button type="submit" id="submit" name="submit " class="btn btn-default"

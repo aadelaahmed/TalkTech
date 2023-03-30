@@ -42,8 +42,18 @@ function checkout(allProductsValid){
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
+        if(xhr.responseText == "success_order")
+        {
         console.log("respone sucess from updating cart item -> "+ xhr.responseText);
-        // handle response here
+        var popupSuccess = document.getElementsByClassName("pop-up-success")[0]; // select the first element with the class name
+        popupSuccess.style.display = "block";
+        }else{
+        
+          var popupError = document.getElementsByClassName("pop-up-error")[0]; // select the first element with the class name
+          var errorEle = document.getElementById("pop-up-error-message");
+          errorEle.textContent = xhr.responseText;
+          popupError.style.display = "block";
+        }
       }
     }
     xhr.send();
@@ -78,6 +88,9 @@ for (var i = 0; i < totalPriceEles.length; i++) {
   var newTotalPrice = totalPrice + Number(productPrice);
   console.log("typeof newTotalPrice -->"+typeof newTotalPrice);
   console.log("newTotalPrice -->"+ newTotalPrice);
+  if(isNaN(newTotalPrice))
+  totalPriceEle.textContent =   "0 E£";
+else
   totalPriceEle.textContent = newTotalPrice + " E£";
 }
 }
@@ -91,7 +104,10 @@ for (var i = 0; i < totalPriceEles.length; i++) {
   var newTotalPrice = totalPrice - Number(productPrice);
   console.log("typeof newTotalPrice -->"+typeof newTotalPrice);
   console.log("newTotalPrice -->"+ newTotalPrice);
-  totalPriceEle.textContent = newTotalPrice + " E£";
+  if(isNaN(newTotalPrice)){
+    totalPriceEle.textContent = "0 E£";
+  }else
+    totalPriceEle.textContent = newTotalPrice + " E£";
 }
 }
 function decreaseProductsCount(){
@@ -103,15 +119,20 @@ for (var i = 0; i < countProdcutsEles.length; i++) {
   var newCountProducts = countProd - 1;
   console.log("typeof newCountProducts -->"+typeof newCountProducts);
   console.log("newCountProducts -->"+ newCountProducts);
+  if(isNaN(newCountProducts))
+  countProdEle.textContent = "0 ITEMS";
+  else
   countProdEle.textContent = newCountProducts + " ITEMS";
 }
 }
 function removeProduct(button,event,productPrice){
+  var productId = button.getAttribute('data-product');
+    var productQtyInCart = document.getElementById(productId).value;    
+    console.log("qty in cart test -> "+productQtyInCart);
+      var totalProductPrice = Number(productPrice) * Number(productQtyInCart);
+      console.log("remove product price * qty is ->"+totalProductPrice);
       var xhr = new XMLHttpRequest();
-      console.log(typeof productPrice);
-      console.log("productPrice when deleting -> "+productPrice);
-      var productId = button.getAttribute('data-product');
-      decreaseTotalPriceUI(productPrice);
+      decreaseTotalPriceUI(totalProductPrice);
       decreaseProductsCount();
       const container = event.target.closest('.product-container');
       container.remove();

@@ -175,7 +175,7 @@
                         <button class="filter-button send" data-filter="samsung">Samsung</button>
                         <button class="filter-button send" data-filter="realme">Realme</button>
                         <button class="filter-button send" data-filter="oppo">Oppo</button>
-                        <button class="filter-button send" data-filter="xiaomi">Xiaomi</button>
+                        <button class="filter-button send" data-filter="soundcore">Soundcore</button>
                     </div>
                 </div>
                 <div class="brand-bg">

@@ -10,7 +10,7 @@ function onAddToCartClicked(){
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
             console.log("Product added to cart.");
-            //window.location.href = "showCart";
+            window.location.href = "showCart";
             //move to cart screen with get request and close the ajax
             // handle success here
         }

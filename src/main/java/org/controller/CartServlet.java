@@ -41,18 +41,9 @@ public class CartServlet extends HttpServlet {
         System.out.println("start adding product to cart");
         int productId = Integer.parseInt(req.getParameter("productId"));
         HttpSession session = req.getSession(false);
-        String looggedIn = (String) session.getAttribute(Constants.LOGGED_IN_SESSION_ATTR);
+        //String looggedIn = (String) session.getAttribute(Constants.LOGGED_IN_SESSION_ATTR);
         Integer cartId = (int) session.getAttribute(Constants.CART_ID_SESSION_ATTR);
         cartService.addProductToCart(cartId,productId);
-        resp.sendRedirect("showCart");
-        /*if (looggedIn != null){
-            System.out.println("cart id in cart servlet is -> "+cartId);
-        }
-        else
-        {
-            System.out.println("user not login yet in add to cart servlet");
-            resp.sendRedirect("login.jsp");
-        }*/
     }
 
     private void updateProductInCart(HttpServletRequest req) {

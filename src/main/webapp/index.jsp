@@ -58,7 +58,8 @@
                         }                                
                     });
                 
-              }</script>
+              }
+        </script>
 
         </head>
         <!-- body -->
